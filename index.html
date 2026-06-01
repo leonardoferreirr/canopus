@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Today Chácara Santo Antônio · Canopus · Lançamento em SP</title>
+<meta name="description" content="Lançamento Canopus na Chácara Santo Antônio. Apartamentos de 1 e 2 dorms, 29 a 40m², a 450m do Metrô Linha Lilás e em frente ao Consulado Americano. Para morar bem e crescer com o investimento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CANOPUS · TODAY CHÁCARA SANTO ANTÔNIO
+   Landing com tema light (azul Canopus) e dark (preto/dourado).
+   Toggle no canto + prefers-color-scheme como default.
+   ============================================================ */
+
+:root {
+  --ff-display: "Fraunces", Georgia, serif;
+  --ff-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --maxw: 1240px;
+  --radius: 18px;
+  --radius-lg: 28px;
+}
+
+/* LIGHT (default) */
+html[data-theme="light"] {
+  --bg: #f6f7f9;
+  --bg-alt: #ffffff;
+  --bg-section: #eef2f6;
+  --ink: #0c1722;
+  --ink-soft: #4a5a6b;
+  --line: rgba(0,51,73,.10);
+  --accent: #003349;
+  --accent-2: #2cd5c4;
+  --gold: #b6904a;
+  --on-accent: #ffffff;
+  --shadow: 0 30px 70px -28px rgba(0,51,73,.18);
+  --shadow-soft: 0 14px 34px -16px rgba(0,51,73,.16);
+}
+/* DARK */
+html[data-theme="dark"] {
+  --bg: #0d0d0d;
+  --bg-alt: #161514;
+  --bg-section: #0a0a09;
+  --ink: #f3ead8;
+  --ink-soft: #b5a98e;
+  --line: rgba(214,178,113,.18);
+  --accent: #d6b271;
+  --accent-2: #f0d49a;
+  --gold: #d6b271;
+  --on-accent: #0d0d0d;
+  --shadow: 0 30px 70px -28px rgba(0,0,0,.7);
+  --shadow-soft: 0 14px 34px -16px rgba(0,0,0,.5);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--ff-body);
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+  font-feature-settings: "ss01","cv11";
+  transition: background .5s var(--ease), color .5s var(--ease);
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+.wrap { width: min(100% - 2.6rem, var(--maxw)); margin-inline: auto; }
+
+/* Typography */
+.display {
+  font-family: var(--ff-display);
+  font-weight: 400;
+  font-optical-sizing: auto;
+  line-height: 1.05;
+  letter-spacing: -.018em;
+}
+.italic { font-style: italic; color: var(--accent); font-weight: 500; }
+html[data-theme="dark"] .italic { color: var(--accent); }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: .55rem;
+  font-family: var(--ff-body);
+  font-size: .76rem; font-weight: 600;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+h2 { font-family: var(--ff-display); font-weight: 400; letter-spacing: -.015em; }
+h3 { font-family: var(--ff-display); font-weight: 400; letter-spacing: -.01em; }
+h4 { font-family: var(--ff-body); font-weight: 600; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: var(--ff-body); font-weight: 600; font-size: .95rem;
+  padding: 1.05rem 1.9rem; border-radius: 100px; border: none; cursor: pointer;
+  background: var(--accent); color: var(--on-accent);
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .3s;
+  letter-spacing: -.005em;
+  box-shadow: 0 14px 30px -12px rgba(0,51,73,.45);
+  white-space: nowrap;
+}
+html[data-theme="dark"] .btn { box-shadow: 0 14px 30px -12px rgba(214,178,113,.55); }
+.btn:hover { transform: translateY(-3px); }
+.btn svg { width: 16px; height: 16px; transition: transform .3s; }
+.btn:hover svg { transform: translateX(4px); }
+.btn--ghost {
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--line); box-shadow: none;
+}
+.btn--ghost:hover { background: var(--bg-alt); }
+.btn--wa {
+  background: #25d366; color: #fff;
+  box-shadow: 0 14px 30px -12px rgba(37,211,102,.55);
+}
+.btn--wa:hover { background: #1faa55; }
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.1rem 0;
+  transition: .4s var(--ease);
+}
+.nav__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: .5rem .55rem .5rem 1.5rem;
+  transition: .4s var(--ease);
+}
+.nav.scrolled .nav__inner { box-shadow: var(--shadow-soft); }
+.nav__brand {
+  font-family: var(--ff-body);
+  font-weight: 700; letter-spacing: .14em;
+  font-size: .82rem;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.nav__brand .sep { opacity: .35; margin: 0 .55rem; }
+.nav__brand .today { color: var(--accent); }
+.nav__links { display: flex; gap: 1.6rem; }
+.nav__links a {
+  font-size: .88rem; font-weight: 500;
+  color: var(--ink-soft);
+  transition: color .3s;
+}
+.nav__links a:hover { color: var(--ink); }
+.nav__cta { padding: .65rem 1.3rem; font-size: .86rem; }
+.nav__tools { display: flex; align-items: center; gap: .6rem; }
+.theme-toggle {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--bg-alt);
+  display: grid; place-items: center;
+  cursor: pointer;
+  color: var(--ink);
+  transition: .35s var(--ease);
+}
+.theme-toggle:hover { transform: rotate(15deg); border-color: var(--ink-soft); }
+.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle .sun { display: none; }
+.theme-toggle .moon { display: block; }
+html[data-theme="dark"] .theme-toggle .sun { display: block; }
+html[data-theme="dark"] .theme-toggle .moon { display: none; }
+.nav__burger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 4px; padding: .5rem; }
+.nav__burger span { width: 22px; height: 2px; background: var(--ink); border-radius: 2px; }
+
+/* HERO */
+.hero {
+  position: relative;
+  padding: 10rem 0 5rem;
+  background: var(--bg);
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(180deg, color-mix(in srgb, var(--bg) 30%, transparent) 0%, var(--bg) 95%), url('assets/fachada.jpg');
+  background-size: cover;
+  background-position: center 40%;
+  opacity: .22;
+  pointer-events: none;
+}
+html[data-theme="dark"] .hero::before {
+  background-image: linear-gradient(180deg, color-mix(in srgb, var(--bg) 35%, transparent) 0%, var(--bg) 95%), url('assets/fachada.jpg');
+  opacity: .35;
+}
+.hero__grid {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1.15fr .9fr;
+  gap: 4rem; align-items: end;
+}
+.hero__copy .eyebrow { margin-bottom: 1.5rem; }
+.hero h1 {
+  font-size: clamp(2.5rem, 5.8vw, 4.4rem);
+  margin-bottom: 1.6rem;
+  font-weight: 400;
+}
+.hero__sub {
+  font-size: 1.1rem; color: var(--ink-soft);
+  max-width: 34rem; margin-bottom: 2.2rem;
+  line-height: 1.55;
+}
+.hero__specs {
+  display: flex; gap: 2.4rem; flex-wrap: wrap;
+  padding-top: 1.8rem; border-top: 1px solid var(--line);
+}
+.spec { display: flex; flex-direction: column; gap: .25rem; }
+.spec .n {
+  font-family: var(--ff-display); font-weight: 500;
+  font-size: 1.4rem; color: var(--ink); line-height: 1;
+}
+.spec .l {
+  font-size: .76rem; color: var(--ink-soft);
+  letter-spacing: .12em; text-transform: uppercase;
+}
+
+/* Form card */
+.hero__form {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem 2rem;
+  box-shadow: var(--shadow);
+}
+.hero__form .eyebrow { color: var(--gold); margin-bottom: .8rem; }
+.hero__form .eyebrow .dot { background: var(--gold); }
+.hero__form h3 {
+  font-size: 1.85rem; line-height: 1.1;
+  margin-bottom: .55rem;
+}
+.hero__form p.sub {
+  font-size: .94rem; color: var(--ink-soft);
+  margin-bottom: 1.5rem;
+}
+.field {
+  display: flex; flex-direction: column; gap: .35rem;
+  margin-bottom: 1rem;
+}
+.field label {
+  font-size: .74rem; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.field input, .field select {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: .85rem 1rem;
+  font-family: inherit;
+  font-size: .96rem;
+  color: var(--ink);
+  transition: border-color .25s, background .25s;
+}
+.field input:focus, .field select:focus {
+  outline: none; border-color: var(--accent);
+  background: var(--bg-alt);
+}
+.field select { appearance: none; cursor: pointer; background-image: linear-gradient(45deg, transparent 50%, var(--ink-soft) 50%), linear-gradient(135deg, var(--ink-soft) 50%, transparent 50%); background-position: calc(100% - 18px) center, calc(100% - 13px) center; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; padding-right: 2.2rem; }
+.form__cta {
+  width: 100%;
+  background: var(--gold);
+  color: var(--on-accent);
+  padding: 1.1rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-size: .85rem;
+  cursor: pointer; border: none;
+  margin-top: .7rem;
+  transition: background .3s, transform .3s var(--ease);
+}
+.form__cta:hover { transform: translateY(-2px); background: color-mix(in srgb, var(--gold) 88%, black); }
+html[data-theme="light"] .form__cta { background: var(--accent); }
+html[data-theme="light"] .form__cta:hover { background: color-mix(in srgb, var(--accent) 85%, black); }
+.form__legal {
+  font-size: .72rem; color: var(--ink-soft);
+  margin-top: .9rem; line-height: 1.45;
+}
+.form__success {
+  display: none;
+  padding: 1.4rem; border-radius: 12px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid var(--accent);
+  color: var(--ink);
+  text-align: center;
+}
+.form__success.show { display: block; }
+
+/* Section base */
+section { position: relative; }
+.section {
+  padding: 7rem 0;
+  background: var(--bg);
+  position: relative;
+  z-index: 1;
+}
+.section--alt { background: var(--bg-section); }
+.section__head { max-width: 50rem; margin-bottom: 4rem; }
+.section__head.center { margin-inline: auto; text-align: center; }
+.section__head h2 {
+  font-size: clamp(2rem, 4.6vw, 3.2rem);
+  margin: 1rem 0 1.2rem;
+}
+.section__head p {
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  max-width: 38rem;
+}
+.section__head.center p { margin-inline: auto; }
+
+.section__cta {
+  margin-top: 3.5rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+}
+
+/* DOIS PERFIS */
+.perfis__grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.perfil {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 2.4rem 2rem;
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.perfil:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.perfil .tag {
+  display: inline-block;
+  font-size: .72rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: .42rem .9rem; border-radius: 100px;
+  margin-bottom: 1.2rem;
+}
+.perfil h3 { font-size: 1.65rem; margin-bottom: .7rem; line-height: 1.2; }
+.perfil p { color: var(--ink-soft); font-size: 1rem; line-height: 1.65; }
+
+/* LOCALIZAÇÃO */
+.loc__grid {
+  display: grid; grid-template-columns: 1.05fr .95fr;
+  gap: 4rem; align-items: start;
+}
+.loc__copy .destaque {
+  margin-top: 1.8rem;
+  padding: 1.6rem 1.8rem;
+  background: color-mix(in srgb, var(--gold) 10%, transparent);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  font-size: 1rem;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.loc__copy .destaque strong { color: var(--gold); }
+.loc__pontos {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem 2.4rem;
+}
+.ponto .n {
+  display: block;
+  font-family: var(--ff-display); font-weight: 500;
+  font-size: 2.4rem;
+  color: var(--accent);
+  line-height: 1;
+}
+.ponto .n sub {
+  font-family: var(--ff-body); font-weight: 600;
+  font-size: .8rem;
+  color: var(--ink-soft);
+  margin-left: .3rem;
+  vertical-align: baseline;
+}
+.ponto .l {
+  font-size: .76rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: .25rem 0 .4rem;
+}
+.ponto .d {
+  font-family: var(--ff-display); font-weight: 500;
+  font-size: 1.1rem;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.ponto.em-frente .n { color: var(--gold); }
+
+/* LANÇAMENTO + APARTAMENTO (2 col) */
+.duo__grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+}
+.duo h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 1.4rem; }
+.duo h2 .italic { display: inline; }
+.duo .lista { margin-top: 1.8rem; display: grid; gap: 1.2rem; }
+.duo .lista li {
+  display: flex; gap: 1.1rem;
+  list-style: none;
+  padding: 1rem 1.2rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  align-items: flex-start;
+}
+.duo .lista .n {
+  font-family: var(--ff-display); font-weight: 500;
+  font-size: .95rem;
+  color: var(--accent);
+  flex-shrink: 0; width: 28px;
+  letter-spacing: .04em;
+}
+.duo .lista .t {
+  font-family: var(--ff-display); font-weight: 500;
+  font-size: 1rem; color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: .15rem;
+}
+.duo .lista .d {
+  font-size: .9rem; color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+/* TIPOLOGIAS */
+.tipos__grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.4rem;
+}
+.tipo {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem;
+  transition: .4s var(--ease);
+}
+.tipo:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.tipo .num {
+  font-family: var(--ff-display); font-weight: 500;
+  font-size: 2.6rem; line-height: 1;
+  color: var(--accent);
+  margin-bottom: .8rem;
+}
+.tipo .planta-thumb {
+  width: 100%; aspect-ratio: 1/1.05;
+  border-radius: 14px; overflow: hidden;
+  background: var(--bg);
+  margin-bottom: 1.2rem;
+  border: 1px solid var(--line);
+  display: grid; place-items: center;
+}
+.tipo .planta-thumb img { width: 100%; height: 100%; object-fit: contain; padding: .7rem; }
+.tipo h3 { font-size: 1.45rem; margin-bottom: .8rem; }
+.tipo .meta {
+  font-size: .82rem; color: var(--ink-soft);
+  letter-spacing: .04em; margin-bottom: 1.4rem;
+}
+.tipo ul {
+  list-style: none; display: grid; gap: .55rem;
+  margin-bottom: 1.6rem;
+}
+.tipo ul li {
+  font-size: .92rem; color: var(--ink);
+  display: flex; gap: .7rem; align-items: center;
+}
+.tipo ul li::before {
+  content: ""; width: 6px; height: 6px;
+  background: var(--gold); border-radius: 50%;
+  flex-shrink: 0;
+}
+.tipo.padrao {
+  background: linear-gradient(155deg, color-mix(in srgb, var(--accent) 8%, var(--bg-alt)) 0%, var(--bg-alt) 70%);
+}
+.tipo.padrao .icon-star {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: var(--gold);
+  display: grid; place-items: center;
+  margin-bottom: 1rem;
+}
+.tipo.padrao .icon-star svg { width: 22px; height: 22px; fill: var(--on-accent); }
+
+/* INFRA */
+.infra__grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.infra-item {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.6rem 1.4rem;
+  display: flex; align-items: center; gap: 1rem;
+  transition: .35s var(--ease);
+}
+.infra-item:hover { border-color: var(--gold); transform: translateY(-2px); }
+.infra-item .ico {
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--gold) 14%, transparent);
+  flex-shrink: 0;
+}
+.infra-item .ico svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.7; }
+.infra-item span.l {
+  font-family: var(--ff-display); font-weight: 500;
+  font-size: .96rem; color: var(--ink);
+  line-height: 1.2;
+}
+
+/* GALERIA */
+.galeria__grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 1fr 1fr;
+  gap: 1rem;
+  aspect-ratio: 2 / 1.05;
+}
+.galeria__item {
+  border-radius: var(--radius); overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-soft);
+}
+.galeria__item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .9s var(--ease);
+}
+.galeria__item:hover img { transform: scale(1.05); }
+.galeria__item.wide { grid-column: 1; grid-row: 1 / span 2; }
+.galeria__cap {
+  position: absolute; bottom: 12px; left: 12px;
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  padding: .4rem .8rem; border-radius: 100px;
+  font-size: .72rem; color: var(--ink);
+  letter-spacing: .1em; text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* CTA FINAL */
+.cta-final {
+  background: var(--accent); color: var(--on-accent);
+  padding: 7rem 0; text-align: center;
+  position: relative; overflow: hidden;
+}
+html[data-theme="dark"] .cta-final { background: var(--gold); color: #0d0d0d; }
+.cta-final::before {
+  content: ""; position: absolute;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: color-mix(in srgb, var(--accent-2) 18%, transparent);
+  top: -300px; left: -200px;
+  filter: blur(60px);
+}
+.cta-final__inner { position: relative; z-index: 2; max-width: 46rem; margin: 0 auto; }
+.cta-final .eyebrow { color: color-mix(in srgb, var(--on-accent) 70%, transparent); }
+.cta-final .eyebrow .dot { background: var(--gold); }
+html[data-theme="dark"] .cta-final .eyebrow .dot { background: #0d0d0d; }
+.cta-final h2 {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  color: var(--on-accent);
+  margin: 1rem auto 1.3rem;
+}
+.cta-final h2 .italic { color: var(--gold); }
+html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
+.cta-final p { color: color-mix(in srgb, var(--on-accent) 75%, transparent); margin-bottom: 2.4rem; font-size: 1.1rem; }
+.cta-final .btn--wa { background: #25d366; }
+.cta-final .btn--ghost { color: var(--on-accent); border-color: color-mix(in srgb, var(--on-accent) 35%, transparent); }
+.cta-final .btn--ghost:hover { background: color-mix(in srgb, var(--on-accent) 10%, transparent); }
+
+/* FOOTER */
+.footer {
+  background: var(--bg-section);
+  padding: 4rem 0 2rem;
+  border-top: 1px solid var(--line);
+}
+.footer__inner {
+  display: flex; justify-content: space-between; align-items: end;
+  flex-wrap: wrap; gap: 2rem;
+}
+.footer__brand {
+  font-family: var(--ff-body); font-weight: 700;
+  font-size: .82rem; letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.footer__brand .today { color: var(--accent); }
+.footer__addr {
+  font-size: .9rem; color: var(--ink-soft);
+  line-height: 1.6;
+}
+.footer__link a {
+  font-size: .9rem; color: var(--accent);
+  font-weight: 500;
+  border-bottom: 1px solid currentColor;
+}
+.footer__bottom {
+  margin-top: 3rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .76rem; color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* WhatsApp float */
+.wfloat {
+  position: fixed; bottom: 1.6rem; right: 1.6rem; z-index: 90;
+  display: inline-flex; align-items: center;
+  background: #25d366; border-radius: 100px;
+  box-shadow: 0 16px 36px -10px rgba(37,211,102,.55);
+  transition: transform .35s var(--ease);
+  text-decoration: none;
+}
+.wfloat:hover { transform: translateY(-3px) scale(1.02); }
+.wfloat__icon {
+  width: 58px; height: 58px; border-radius: 50%;
+  background: #25d366; display: grid; place-items: center;
+}
+.wfloat__icon svg { width: 30px; height: 30px; fill: #fff; }
+.wfloat__label {
+  display: inline-flex; flex-direction: column; line-height: 1.05;
+  color: #fff;
+  font-family: var(--ff-body); font-weight: 700;
+  font-size: .82rem; letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 0 1.3rem 0 .6rem;
+}
+
+/* Reveal */
+.rv { opacity: 0; transform: translateY(34px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.rv.in { opacity: 1; transform: none; }
+.rv[data-d="1"] { transition-delay: .08s }
+.rv[data-d="2"] { transition-delay: .16s }
+.rv[data-d="3"] { transition-delay: .24s }
+.rv[data-d="4"] { transition-delay: .32s }
+
+/* Responsive */
+@media (max-width: 980px) {
+  .hero__grid, .loc__grid, .duo__grid, .perfis__grid { grid-template-columns: 1fr; gap: 3rem; }
+  .tipos__grid { grid-template-columns: 1fr; }
+  .infra__grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 680px) {
+  .nav__links { display: none; }
+  .nav__burger { display: flex; }
+  .nav__cta { display: none; }
+  .section { padding: 4.8rem 0; }
+  .hero { padding: 7.5rem 0 3.5rem; }
+  .hero__specs { gap: 1.4rem; }
+  .loc__pontos { grid-template-columns: 1fr 1fr; gap: 1.2rem 1.4rem; }
+  .galeria__grid { grid-template-columns: 1fr 1fr; aspect-ratio: auto; }
+  .galeria__item { aspect-ratio: 1/1; }
+  .galeria__item.wide { grid-column: 1 / -1; aspect-ratio: 16/10; }
+  .infra__grid { grid-template-columns: 1fr 1fr; }
+  .footer__inner { flex-direction: column; align-items: flex-start; }
+  .wfloat__label { display: none; }
+  .wfloat { background: transparent; box-shadow: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a href="#topo" class="nav__brand">
+      <span>Canopus</span><span class="sep">·</span><span class="today">Today</span>
+    </a>
+    <nav class="nav__links">
+      <a href="#perfis">Pra quem é</a>
+      <a href="#localizacao">Localização</a>
+      <a href="#apartamento">Apartamento</a>
+      <a href="#tipologias">Tipologias</a>
+      <a href="#infra">Infraestrutura</a>
+    </nav>
+    <div class="nav__tools">
+      <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <a href="#hero-form" class="btn nav__cta">Falar com especialista</a>
+      <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="topo">
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <span class="eyebrow"><span class="dot"></span>Lançamento · Chácara Santo Antônio · SP</span>
+      <h1 class="display">O imóvel certo para <span class="italic">morar bem</span> e <span class="italic">crescer mais.</span></h1>
+      <p class="hero__sub">Tem imóvel que entrega um lar. Tem imóvel que entrega rentabilidade. O Today Chácara Santo Antônio entrega os dois, no metro quadrado mais bem cotado da Zona Sul, a 450 metros do Metrô Santo Amaro e em frente ao Consulado Americano.</p>
+      <div class="hero__specs">
+        <div class="spec"><span class="n">1 e 2</span><span class="l">Dormitórios</span></div>
+        <div class="spec"><span class="n">29 a 40 m²</span><span class="l">Área privativa</span></div>
+        <div class="spec"><span class="n">450 m</span><span class="l">do Metrô Linha 5</span></div>
+        <div class="spec"><span class="n">421</span><span class="l">Unidades R2V</span></div>
+      </div>
+    </div>
+
+    <div class="hero__form" id="hero-form">
+      <span class="eyebrow"><span class="dot"></span>Garanta sua condição</span>
+      <h3 class="display">Fale com um <span class="italic">especialista.</span></h3>
+      <p class="sub">Tabela de lançamento, plantas e condições especiais direto com a Canopus. A reserva é por ordem de chegada.</p>
+      <form id="leadForm" novalidate>
+        <div class="field">
+          <label for="f-nome">Nome completo</label>
+          <input type="text" id="f-nome" name="nome" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="f-email">E-mail</label>
+          <input type="email" id="f-email" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="f-fone">Telefone com DDD</label>
+          <input type="tel" id="f-fone" name="telefone" required autocomplete="tel" placeholder="(11) 9 ____-____">
+        </div>
+        <div class="field">
+          <label for="f-perfil">Para quem você quer o imóvel?</label>
+          <select id="f-perfil" name="perfil" required>
+            <option value="">Selecione</option>
+            <option value="morar">Pra morar</option>
+            <option value="investir">Pra investir</option>
+            <option value="ambos">Pra morar e investir</option>
+          </select>
+        </div>
+        <button type="submit" class="form__cta">Quero conhecer agora</button>
+        <p class="form__legal">Ao enviar, você concorda em receber contato da nossa equipe comercial sobre o lançamento Today Chácara Santo Antônio. Seus dados são tratados de acordo com a LGPD.</p>
+      </form>
+      <div class="form__success" id="formSuccess">
+        <strong>Recebido.</strong> Em poucos minutos um especialista da Canopus vai entrar em contato com você. Fique atento ao seu WhatsApp.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOIS PERFIS -->
+<section class="section section--alt" id="perfis">
+  <div class="wrap">
+    <div class="section__head rv">
+      <span class="eyebrow"><span class="dot"></span>Dois perfis · Uma escolha certa</span>
+      <h2 class="display">Dois perfis. <span class="italic">Uma escolha certa.</span></h2>
+      <p>Não importa se você está procurando o lar com mobilidade e qualidade de vida ou se está olhando potencial de valorização real. O Today Chácara Santo Antônio entrega para os dois, dentro do mesmo endereço.</p>
+    </div>
+    <div class="perfis__grid">
+      <article class="perfil rv" data-d="1">
+        <span class="tag">Para quem vai morar</span>
+        <h3 class="display">Mobilidade, conforto e lazer, tudo na porta de casa.</h3>
+        <p>Manhã com café no Mercadinho do Lar, almoço no Morumbi Shopping, treino antes do trabalho na academia do prédio e a Linha 5 do Metrô a uma caminhada de cinco minutos. Você ganha o que dinheiro não compra de volta: tempo de qualidade.</p>
+        <div style="margin-top:1.8rem">
+          <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio%20para%20morar." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais pra morar
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="perfil rv" data-d="2">
+        <span class="tag">Para quem vai investir</span>
+        <h3 class="display">Localização que valoriza. Demanda que não para.</h3>
+        <p>Bairro consolidado, metrô a pé e uma das regiões com maior demanda por aluguel de Zona Sul. Comprar no lançamento significa entrar pelo melhor preço, com a opção da Canopus de pagamento facilitado e a perspectiva de valorização real até a entrega da obra.</p>
+        <div style="margin-top:1.8rem">
+          <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20a%20rentabilidade%20projetada%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Quero a projeção de rentabilidade
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- LOCALIZAÇÃO -->
+<section class="section" id="localizacao">
+  <div class="wrap loc__grid">
+    <div class="loc__copy rv">
+      <span class="eyebrow"><span class="dot"></span>Localização</span>
+      <h2 class="display" style="font-size:clamp(2rem,4.4vw,3rem);margin:1rem 0 1.4rem">O endereço que <span class="italic">todo mundo quer estar.</span></h2>
+      <p style="color:var(--ink-soft);line-height:1.65">A Chácara Santo Antônio é uma das regiões mais maduras de São Paulo. Bairro consolidado, infraestrutura completa, acesso rápido a dois nomes de metrô e a grandes centros comerciais. Lançamento aqui não é só um endereço bom: é um endereço que dificilmente perde valor.</p>
+      <div class="destaque">
+        <strong>Em frente ao Consulado Americano,</strong> em um endereço que é referência de prestígio na Zona Sul. Pra quem mora, status e segurança. Pra quem investe, um ativo que não perde valor.
+      </div>
+      <div style="margin-top:1.8rem">
+        <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20o%20mapa%20completo%20da%20regi%C3%A3o%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Receber o mapa completo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="loc__pontos rv" data-d="1">
+      <div class="ponto"><span class="n">6<sub>MIN</sub></span><span class="l">A pé</span><span class="d">Metrô Santo Amaro</span></div>
+      <div class="ponto"><span class="n">4<sub>MIN</sub></span><span class="l">De carro</span><span class="d">Morumbi Shopping</span></div>
+      <div class="ponto"><span class="n">5<sub>MIN</sub></span><span class="l">De carro</span><span class="d">Parque Severo Gomes</span></div>
+      <div class="ponto"><span class="n">5<sub>MIN</sub></span><span class="l">A pé</span><span class="d">Estação Granja Julieta</span></div>
+      <div class="ponto"><span class="n">8<sub>MIN</sub></span><span class="l">De carro</span><span class="d">Av. Santo Amaro</span></div>
+      <div class="ponto em-frente"><span class="n">Em frente</span><span class="l">·</span><span class="d">Consulado Americano</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- LANÇAMENTO + APARTAMENTO -->
+<section class="section section--alt" id="apartamento">
+  <div class="wrap">
+    <div class="duo__grid">
+      <div class="duo rv">
+        <span class="eyebrow"><span class="dot"></span>Por que entrar agora</span>
+        <h2 class="display">O momento certo para entrar é <span class="italic">no lançamento.</span></h2>
+        <p style="color:var(--ink-soft);line-height:1.65">O preço de lançamento é, por definição, o menor preço que essa unidade vai ter. A cada fase de obra o m² sobe. Quem entra primeiro paga menos, escolhe a melhor unidade e recebe a maior margem de valorização até a entrega.</p>
+        <ul class="lista">
+          <li><span class="n">01</span><div><div class="t">Preço de lançamento</div><div class="d">A menor margem de entrada do empreendimento. Acima de mil reais a menos por m² em relação à entrega.</div></div></li>
+          <li><span class="n">02</span><div><div class="t">Demanda garantida</div><div class="d">Chácara Santo Antônio tem uma das menores taxas de vacância de Zona Sul. Aluguel sai antes da obra ficar pronta.</div></div></li>
+          <li><span class="n">03</span><div><div class="t">Escolha de fim</div><div class="d">Andar alto, sol da manhã, vista preservada. Quem chega primeiro escolhe primeiro.</div></div></li>
+          <li><span class="n">04</span><div><div class="t">Unidades HMP e R2V</div><div class="d">Empreendimento dentro do programa habitacional, com condições facilitadas de financiamento e juros mais baixos para quem se enquadra.</div></div></li>
+        </ul>
+      </div>
+      <div class="duo rv" data-d="1">
+        <span class="eyebrow"><span class="dot"></span>O apartamento</span>
+        <h2 class="display">Cada metro quadrado <span class="italic">pensado para render.</span></h2>
+        <p style="color:var(--ink-soft);line-height:1.65">Plantas compactas e inteligentes, de 29 a 40m², desenhadas para morar com conforto e alugar sem fricção. Quem mora aprecia o espaço bem aproveitado. Quem investe se beneficia da liquidez que plantas bem resolvidas geram.</p>
+        <div style="margin-top:1.8rem;display:grid;gap:.85rem">
+          <div style="padding:1.1rem 1.3rem;background:var(--bg-alt);border:1px solid var(--line);border-radius:14px"><strong style="font-family:var(--ff-display);font-weight:500;font-size:1.05rem">Studios e 1 dorm</strong> <span style="color:var(--ink-soft);font-size:.92rem">— 29m² a 32m². Pra quem mora sozinho, casal jovem ou primeiro investimento.</span></div>
+          <div style="padding:1.1rem 1.3rem;background:var(--bg-alt);border:1px solid var(--line);border-radius:14px"><strong style="font-family:var(--ff-display);font-weight:500;font-size:1.05rem">2 dormitórios</strong> <span style="color:var(--ink-soft);font-size:.92rem">— 37m² a 40m². Padrão tipo ou living ampliado, com varanda integrada.</span></div>
+          <div style="padding:1.1rem 1.3rem;background:var(--bg-alt);border:1px solid var(--line);border-radius:14px"><strong style="font-family:var(--ff-display);font-weight:500;font-size:1.05rem">Padrão de entrega Today</strong> <span style="color:var(--ink-soft);font-size:.92rem">— Marcenaria sob medida, cozinha equipada, piso vinílico, ar-condicionado e tomada para bicicleta elétrica.</span></div>
+        </div>
+        <div style="margin-top:2rem">
+          <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20a%20tabela%20de%20valores%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Pedir a tabela atualizada
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPOLOGIAS -->
+<section class="section" id="tipologias">
+  <div class="wrap">
+    <div class="section__head rv">
+      <span class="eyebrow"><span class="dot"></span>Tipologias</span>
+      <h2 class="display">Três opções, <span class="italic">o mesmo padrão Canopus.</span></h2>
+      <p>Cada planta foi desenhada para entregar o máximo em pouco metro quadrado. Itens de série que normalmente vêm como opcional, aqui já entram no preço.</p>
+    </div>
+    <div class="tipos__grid">
+      <article class="tipo rv" data-d="1">
+        <div class="planta-thumb"><img src="assets/planta-2d-tipo.jpg" alt="Planta 1 dormitório"></div>
+        <div class="num">01</div>
+        <h3>1 Dormitório</h3>
+        <div class="meta">29 a 32 m² · Studio ou 1 dorm</div>
+        <ul>
+          <li>Varanda integrada à sala</li>
+          <li>Cozinha americana com bancada</li>
+          <li>Box e banheiro completo</li>
+          <li>Tomada para bicicleta elétrica</li>
+          <li>Pronta pra entrar e morar</li>
+        </ul>
+      </article>
+      <article class="tipo rv" data-d="2">
+        <div class="planta-thumb"><img src="assets/planta-2d-ampliado.jpg" alt="Planta 2 dormitórios"></div>
+        <div class="num">02</div>
+        <h3>2 Dormitórios</h3>
+        <div class="meta">37 a 40 m² · Tipo ou living ampliado</div>
+        <ul>
+          <li>Varanda integrada à sala</li>
+          <li>Cozinha americana com bancada</li>
+          <li>Suíte (na opção living ampliado)</li>
+          <li>Espaço home office</li>
+          <li>Layout que aceita 4 pessoas</li>
+        </ul>
+      </article>
+      <article class="tipo padrao rv" data-d="3">
+        <div class="icon-star"><svg viewBox="0 0 24 24"><path d="M12 2l2.94 6.66L22 9.74l-5.32 4.93L18.36 22 12 18.27 5.64 22l1.68-7.33L2 9.74l7.06-1.08L12 2z"/></svg></div>
+        <h3>Padrão de entrega <span class="italic" style="display:block;font-size:1rem;letter-spacing:.04em">Canopus · Today</span></h3>
+        <div class="meta" style="margin-top:1rem">Tudo que vem dentro do preço</div>
+        <ul>
+          <li>Marcenaria sob medida</li>
+          <li>Cozinha com bancada e cubas</li>
+          <li>Vaso convencional dual flush</li>
+          <li>Infra de ar-condicionado split</li>
+          <li>Piso vinílico nas áreas internas</li>
+          <li>Portas em laminado amadeirado</li>
+          <li>Infra de lavanderia compacta</li>
+        </ul>
+      </article>
+    </div>
+    <div class="section__cta rv">
+      <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20ver%20todas%20as%20plantas%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Ver todas as plantas pelo WhatsApp
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- INFRAESTRUTURA -->
+<section class="section section--alt" id="infra">
+  <div class="wrap">
+    <div class="section__head rv">
+      <span class="eyebrow"><span class="dot"></span>Infraestrutura</span>
+      <h2 class="display">Lazer que <span class="italic">agrega valor, literalmente.</span></h2>
+      <p>Pra quem mora: qualidade de vida todos os dias. Pra quem investe: uma lista de amenidades que sustenta aluguel mais alto e reduz vacância. Tudo entregue decorado e equipado, sem custo extra.</p>
+    </div>
+    <div class="infra__grid">
+      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 12c3-3 5 3 9 0s5 3 9 0M3 18c3-3 5 3 9 0s5 3 9 0"/></svg></div><span class="l">Piscina</span></div>
+      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M6 5v14M18 5v14M6 12h12M3 10v4M21 10v4"/></svg></div><span class="l">Academia</span></div>
+      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2c-1 4-3 5-3 8a3 3 0 0 0 6 0c0-3-2-4-3-8zM6 13h12l-1.5 7h-9z"/></svg></div><span class="l">Churrasqueira</span></div>
+      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="11" rx="2"/><path d="M8 8V5h8v3"/></svg></div><span class="l">Salão de Festas</span></div>
+      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 9h8M8 13h5"/></svg></div><span class="l">Coworking</span></div>
+      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M7 12h2M11 12h2M15 12h2"/></svg></div><span class="l">Coliving</span></div>
+      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18M12 3v18"/></svg></div><span class="l">Salão de Jogos</span></div>
+      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="4" r="2"/><path d="M7 22l3-9h6l-3 9M4 15a2 2 0 1 0 4 0M16 15a2 2 0 1 0 4 0"/></svg></div><span class="l">Pet Place</span></div>
+      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 7h18M3 11h18M5 15c0-2 2-4 4-4M19 15c0-2-2-4-4-4"/></svg></div><span class="l">Playground</span></div>
+      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M6 4h12l-2 16H8L6 4z"/><path d="M9 9h6M9 13h6M9 17h6"/></svg></div><span class="l">Brinquedoteca</span></div>
+      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18"/></svg></div><span class="l">Lavanderia</span></div>
+      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v6M9 9l3-3 3 3M5 21h14l-1-9H6z"/></svg></div><span class="l">Praça da Árvore</span></div>
+      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-6 9 6v11h-6v-7H9v7H3z"/></svg></div><span class="l">Hall Social</span></div>
+      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="12" r="3"/><circle cx="15" cy="12" r="3"/><path d="M6 12h12"/></svg></div><span class="l">Bicicletário</span></div>
+      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 5V3M16 5V3M4 11h16"/></svg></div><span class="l">Job & Joy</span></div>
+      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M6 5v14M18 5v14M6 12h12"/></svg></div><span class="l">Academia Exterior</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="section" id="galeria">
+  <div class="wrap">
+    <div class="section__head center rv">
+      <span class="eyebrow"><span class="dot"></span>Perspectivas ilustrativas</span>
+      <h2 class="display">O dia a dia <span class="italic">já desenhado.</span></h2>
+      <p>Cada espaço foi projetado por Ide Studio Arquitetura, paisagismo de Rossin & Tramontina e decoração da Claudia Albertini. Padrão Canopus por inteiro.</p>
+    </div>
+    <div class="galeria__grid rv">
+      <div class="galeria__item wide"><img src="assets/praca.jpg" alt="Praça externa"><span class="galeria__cap">Praça da Árvore</span></div>
+      <div class="galeria__item"><img src="assets/lobby.jpg" alt="Lobby de entrada"><span class="galeria__cap">Lobby</span></div>
+      <div class="galeria__item"><img src="assets/churrasqueira.jpg" alt="Lounge churrasqueira"><span class="galeria__cap">Churrasqueira</span></div>
+      <div class="galeria__item"><img src="assets/bicicletario.jpg" alt="Bicicletário"><span class="galeria__cap">Bicicletário</span></div>
+      <div class="galeria__item"><img src="assets/delivery.jpg" alt="Espaço delivery"><span class="galeria__cap">Delivery</span></div>
+    </div>
+    <div class="section__cta rv">
+      <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20conhecer%20o%20decorado%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Agendar visita ao decorado
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final" id="garantir">
+  <div class="wrap cta-final__inner rv">
+    <span class="eyebrow"><span class="dot"></span>O momento é agora</span>
+    <h2 class="display">O melhor momento para agir é <span class="italic">agora.</span></h2>
+    <p>As unidades de lançamento têm condições exclusivas e elas são limitadas. Reserve a sua antes de a tabela subir.</p>
+    <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap">
+      <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20garantir%20minha%20unidade%20no%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Garantir minha unidade
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#hero-form" class="btn btn--ghost">Voltar pro formulário</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__inner">
+      <div>
+        <div class="footer__brand"><span>Canopus</span> <span class="sep" style="opacity:.35">·</span> <span class="today">Today Chácara Santo Antônio</span></div>
+        <div class="footer__addr" style="margin-top:.6rem">Rua Henri Dunant, 332 · Chácara Santo Antônio · São Paulo · SP</div>
+      </div>
+      <div class="footer__link"><a href="https://canopus.com.br" target="_blank" rel="noopener">canopus.com.br</a></div>
+    </div>
+    <div class="footer__bottom">
+      Imagens ilustrativas. Todas as áreas serão entregues conforme Memorial Descritivo. Empreendimento sujeito a aprovação dos órgãos competentes. Realização e construção Canopus. Projeto de arquitetura Ide Studio Arquitetura, paisagismo Rossin & Tramontina, decoração Claudia Albertini.
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp float -->
+<a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20saber%20sobre%20o%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="wfloat" aria-label="Fale com um especialista no WhatsApp" target="_blank" rel="noopener">
+  <span class="wfloat__icon">
+    <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5L8.8 7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.2.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.3-.6-.4M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2"/></svg>
+  </span>
+  <span class="wfloat__label"><span>Falar com</span><span>especialista</span></span>
+</a>
+
+<script>
+// Theme toggle (prefers-color-scheme default, overridable via toggle, persists in localStorage)
+(function(){
+  const root = document.documentElement;
+  const stored = localStorage.getItem('canopus-theme');
+  const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+  const initial = stored || (prefersDark ? 'dark' : 'light');
+  root.setAttribute('data-theme', initial);
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('canopus-theme', next);
+  });
+})();
+
+// Nav scroll state
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 30), { passive: true });
+
+// Reveal on scroll
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+// Form submit (front-end only — backend a integrar depois)
+document.getElementById('leadForm').addEventListener('submit', (ev) => {
+  ev.preventDefault();
+  const form = ev.target;
+  const data = Object.fromEntries(new FormData(form));
+  if (!data.nome || !data.email || !data.telefone || !data.perfil) {
+    form.querySelectorAll('input,select').forEach(el => {
+      if (!el.value) el.style.borderColor = '#c33';
+    });
+    return;
+  }
+  console.log('[LEAD]', data);
+  form.style.display = 'none';
+  document.getElementById('formSuccess').classList.add('show');
+});
+
+// Mobile menu (overlay simples)
+const burger = document.querySelector('.nav__burger');
+const links = document.querySelector('.nav__links');
+if (burger) {
+  burger.addEventListener('click', () => {
+    const open = links.style.display === 'flex';
+    Object.assign(links.style, open ? { display:'' } : { display:'flex', position:'absolute', top:'110%', right:'0', flexDirection:'column', background:'var(--bg-alt)', padding:'1.2rem 1.6rem', borderRadius:'18px', gap:'1rem', boxShadow:'var(--shadow)' });
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { links.style.display = ''; }));
+}
+
+// Anchor smooth offset
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (ev) => {
+    const id = a.getAttribute('href');
+    if (id.length > 1) {
+      const t = document.querySelector(id);
+      if (t) { ev.preventDefault(); scrollTo({ top: t.getBoundingClientRect().top + scrollY - 80, behavior:'smooth' }); }
+    }
+  });
+});
+</script>
+</body>
+</html>
