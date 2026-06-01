@@ -138,8 +138,15 @@ html[data-theme="dark"] .btn { box-shadow: 0 14px 30px -12px rgba(214,178,113,.5
   transition: .4s var(--ease);
 }
 .nav.scrolled .nav__inner { box-shadow: var(--shadow-soft); }
-.nav__brand { display: inline-flex; align-items: center; height: 28px; }
-.nav__brand img { height: 28px; width: auto; }
+.nav__brand, .footer__brand { display: inline-flex; align-items: center; gap: 14px; }
+.nav__brand { height: 32px; }
+.footer__brand { height: 48px; }
+.nav__brand img, .footer__brand img { height: 100%; width: auto; }
+.brand-sep {
+  display: inline-block; align-self: center;
+  width: 1px; height: 60%;
+  background: var(--line);
+}
 .brand-dark { display: none !important; }
 .brand-light { display: block !important; }
 html[data-theme="dark"] .brand-light { display: none !important; }
@@ -582,8 +589,6 @@ html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
   display: flex; justify-content: space-between; align-items: end;
   flex-wrap: wrap; gap: 2rem;
 }
-.footer__brand { display: inline-flex; align-items: center; height: 44px; }
-.footer__brand img { height: 44px; width: auto; }
 .footer__addr {
   font-size: .9rem; color: var(--ink-soft);
   line-height: 1.6;
@@ -919,9 +924,12 @@ html[data-theme="dark"] .hero::after {
 <!-- NAV -->
 <header class="nav" id="nav">
   <div class="wrap nav__inner">
-    <a href="#topo" class="nav__brand" aria-label="Canopus">
-      <img src="assets/logo-canopus-original.svg" alt="Canopus" class="brand-light">
-      <img src="assets/logo-canopus-dark.svg" alt="Canopus" class="brand-dark">
+    <a href="#topo" class="nav__brand" aria-label="Canopus · Today Chácara Santo Antônio">
+      <img src="assets/logo-canopus-original.svg" alt="Canopus" class="brand-light brand-canopus">
+      <img src="assets/logo-canopus-dark.svg" alt="Canopus" class="brand-dark brand-canopus">
+      <span class="brand-sep" aria-hidden="true"></span>
+      <img src="assets/logo-today-light-icon.png" alt="Today" class="brand-light brand-today">
+      <img src="assets/logo-today-dark.png" alt="Today" class="brand-dark brand-today">
     </a>
     <nav class="nav__links">
       <a href="#perfis">Pra quem é</a>
@@ -1222,11 +1230,14 @@ html[data-theme="dark"] .hero::after {
   <div class="wrap">
     <div class="footer__inner">
       <div>
-        <a href="#topo" class="footer__brand" aria-label="Canopus">
-          <img src="assets/logo-canopus-original.svg" alt="Canopus" class="brand-light">
-          <img src="assets/logo-canopus-dark.svg" alt="Canopus" class="brand-dark">
+        <a href="#topo" class="footer__brand" aria-label="Canopus · Today Chácara Santo Antônio">
+          <img src="assets/logo-canopus-original.svg" alt="Canopus" class="brand-light brand-canopus">
+          <img src="assets/logo-canopus-dark.svg" alt="Canopus" class="brand-dark brand-canopus">
+          <span class="brand-sep" aria-hidden="true"></span>
+          <img src="assets/logo-today-light.png" alt="Today Chácara Santo Antônio" class="brand-light brand-today">
+          <img src="assets/logo-today-dark.png" alt="Today" class="brand-dark brand-today">
         </a>
-        <div class="footer__addr" style="margin-top:1rem">Today Chácara Santo Antônio<br>Rua Henri Dunant, 332 · Chácara Santo Antônio · São Paulo · SP</div>
+        <div class="footer__addr" style="margin-top:1rem">Rua Henri Dunant, 332 · Chácara Santo Antônio · São Paulo · SP</div>
       </div>
       <div class="footer__link"><a href="https://canopus.com.br" target="_blank" rel="noopener">canopus.com.br</a></div>
     </div>
