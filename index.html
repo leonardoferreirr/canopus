@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="light">
+<html lang="pt-BR" data-theme="navy">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,34 +24,19 @@
   --radius-lg: 28px;
 }
 
-/* LIGHT (default) */
-html[data-theme="light"] {
-  --bg: #f6f7f9;
-  --bg-alt: #ffffff;
-  --bg-section: #eef2f6;
-  --ink: #0c1722;
-  --ink-soft: #4a5a6b;
-  --line: rgba(0,51,73,.10);
-  --accent: #003349;
-  --accent-2: #2cd5c4;
-  --gold: #b6904a;
-  --on-accent: #ffffff;
-  --shadow: 0 30px 70px -28px rgba(0,51,73,.18);
-  --shadow-soft: 0 14px 34px -16px rgba(0,51,73,.16);
-}
-/* DARK */
-html[data-theme="dark"] {
-  --bg: #0d0d0d;
-  --bg-alt: #161514;
-  --bg-section: #0a0a09;
-  --ink: #f3ead8;
-  --ink-soft: #b5a98e;
-  --line: rgba(214,178,113,.18);
+/* NAVY (única versão — noturna, azul navy + dourado + off-white) */
+html[data-theme="navy"] {
+  --bg: #08111e;
+  --bg-alt: #0d1a2c;
+  --bg-section: #0a1524;
+  --ink: #f4ecd6;
+  --ink-soft: #a9b6c8;
+  --line: rgba(214,178,113,.20);
   --accent: #d6b271;
   --accent-2: #f0d49a;
   --gold: #d6b271;
-  --on-accent: #0d0d0d;
-  --shadow: 0 30px 70px -28px rgba(0,0,0,.7);
+  --on-accent: #08111e;
+  --shadow: 0 30px 70px -28px rgba(0,0,0,.65);
   --shadow-soft: 0 14px 34px -16px rgba(0,0,0,.5);
 }
 
@@ -80,7 +65,7 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: -.018em;
 }
 .italic { font-style: italic; color: var(--accent); font-weight: 500; }
-html[data-theme="dark"] .italic { color: var(--accent); }
+html[data-theme="navy"] .italic { color: var(--accent); }
 
 .eyebrow {
   display: inline-flex; align-items: center; gap: .55rem;
@@ -106,7 +91,7 @@ h4 { font-family: var(--ff-body); font-weight: 600; }
   box-shadow: 0 14px 30px -12px rgba(0,51,73,.45);
   white-space: nowrap;
 }
-html[data-theme="dark"] .btn { box-shadow: 0 14px 30px -12px rgba(214,178,113,.55); }
+html[data-theme="navy"] .btn { box-shadow: 0 14px 30px -12px rgba(214,178,113,.55); }
 .btn:hover { transform: translateY(-3px); }
 .btn svg { width: 16px; height: 16px; transition: transform .3s; }
 .btn:hover svg { transform: translateX(4px); }
@@ -147,10 +132,8 @@ html[data-theme="dark"] .btn { box-shadow: 0 14px 30px -12px rgba(214,178,113,.5
   width: 1px; height: 60%;
   background: var(--line);
 }
-.brand-dark { display: none !important; }
-.brand-light { display: block !important; }
-html[data-theme="dark"] .brand-light { display: none !important; }
-html[data-theme="dark"] .brand-dark { display: block !important; }
+.brand-light { display: none !important; }
+.brand-dark { display: block !important; }
 .nav__links { display: flex; gap: 1.6rem; }
 .nav__links a {
   font-size: .88rem; font-weight: 500;
@@ -160,73 +143,95 @@ html[data-theme="dark"] .brand-dark { display: block !important; }
 .nav__links a:hover { color: var(--ink); }
 .nav__cta { padding: .65rem 1.3rem; font-size: .86rem; }
 .nav__tools { display: flex; align-items: center; gap: .6rem; }
-.theme-toggle {
-  width: 38px; height: 38px; border-radius: 50%;
-  border: 1px solid var(--line);
-  background: var(--bg-alt);
-  display: grid; place-items: center;
-  cursor: pointer;
-  color: var(--ink);
-  transition: .35s var(--ease);
-}
-.theme-toggle:hover { transform: rotate(15deg); border-color: var(--ink-soft); }
-.theme-toggle svg { width: 18px; height: 18px; }
-.theme-toggle .sun { display: none; }
-.theme-toggle .moon { display: block; }
-html[data-theme="dark"] .theme-toggle .sun { display: block; }
-html[data-theme="dark"] .theme-toggle .moon { display: none; }
 .nav__burger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 4px; padding: .5rem; }
 .nav__burger span { width: 22px; height: 2px; background: var(--ink); border-radius: 2px; }
 
 /* HERO */
 .hero {
   position: relative;
-  padding: 10rem 0 5rem;
+  min-height: 100vh;
+  padding: 9rem 0 5rem;
   background: var(--bg);
   overflow: hidden;
+  display: flex; align-items: center;
 }
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: linear-gradient(180deg, color-mix(in srgb, var(--bg) 30%, transparent) 0%, var(--bg) 95%), url('assets/fachada.jpg');
-  background-size: cover;
-  background-position: center 40%;
-  opacity: .22;
+.hero__bg {
+  position: absolute; inset: 0;
+  z-index: 1;
   pointer-events: none;
 }
-html[data-theme="dark"] .hero::before {
-  background-image: linear-gradient(180deg, color-mix(in srgb, var(--bg) 35%, transparent) 0%, var(--bg) 95%), url('assets/fachada.jpg');
-  opacity: .35;
+.hero__img {
+  position: absolute;
+  left: -4%; top: 0; bottom: 0;
+  width: 70%; height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: brightness(.72) contrast(1.18) saturate(.88) hue-rotate(-12deg);
+  mask-image: linear-gradient(90deg, #000 0%, #000 45%, rgba(0,0,0,.6) 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 45%, rgba(0,0,0,.6) 70%, transparent 100%);
+}
+.hero__bg::after {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(60% 80% at 20% 50%, rgba(8,17,30,.35) 0%, rgba(8,17,30,.85) 70%, var(--bg) 100%),
+    linear-gradient(180deg, var(--bg) 0%, transparent 18%, transparent 82%, var(--bg) 100%);
 }
 .hero__grid {
   position: relative; z-index: 2;
-  display: grid; grid-template-columns: 1.15fr .9fr;
-  gap: 4rem; align-items: end;
+  display: grid; grid-template-columns: 1fr;
+  justify-content: end;
+  align-items: center;
 }
-.hero__copy .eyebrow { margin-bottom: 1.5rem; }
+.hero__copy {
+  margin-left: auto;
+  max-width: 560px;
+  width: 100%;
+}
+.hero__brand {
+  height: 96px; width: auto; margin-bottom: 2rem;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,.4));
+}
+.hero__eyebrow {
+  display: block;
+  font-family: var(--ff-body); font-weight: 600;
+  font-size: .82rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.1rem;
+}
 .hero h1 {
-  font-size: clamp(2.5rem, 5.8vw, 4.4rem);
-  margin-bottom: 1.6rem;
-  font-weight: 400;
+  font-family: var(--ff-display); font-weight: 400;
+  font-size: clamp(2.4rem, 4.6vw, 3.8rem);
+  line-height: 1.04; letter-spacing: -.018em;
+  color: var(--ink); margin-bottom: 2.4rem;
 }
-.hero__sub {
-  font-size: 1.1rem; color: var(--ink-soft);
-  max-width: 34rem; margin-bottom: 2.2rem;
-  line-height: 1.55;
+.hero h1 .strong {
+  font-weight: 600; color: var(--accent);
 }
-.hero__specs {
-  display: flex; gap: 2.4rem; flex-wrap: wrap;
+.hero__features {
+  list-style: none;
+  display: grid; gap: 1.05rem;
+  margin-bottom: 2.4rem;
   padding-top: 1.8rem; border-top: 1px solid var(--line);
 }
-.spec { display: flex; flex-direction: column; gap: .25rem; }
-.spec .n {
-  font-family: var(--ff-display); font-weight: 500;
-  font-size: 1.4rem; color: var(--ink); line-height: 1;
+.hero__features li {
+  display: flex; align-items: flex-start; gap: 1rem;
+  font-size: 1rem; color: var(--ink);
+  line-height: 1.4;
 }
-.spec .l {
-  font-size: .76rem; color: var(--ink-soft);
-  letter-spacing: .12em; text-transform: uppercase;
+.hero__features .ico {
+  flex-shrink: 0;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: rgba(214,178,113,.08);
+  display: grid; place-items: center;
+  color: var(--gold);
+}
+.hero__features .ico svg { width: 18px; height: 18px; }
+.hero__features b { font-weight: 600; }
+.hero__note {
+  font-size: .95rem; color: var(--ink-soft);
+  line-height: 1.55; max-width: 30rem;
 }
 
 /* Form card */
@@ -286,8 +291,6 @@ html[data-theme="dark"] .hero::before {
   transition: background .3s, transform .3s var(--ease);
 }
 .form__cta:hover { transform: translateY(-2px); background: color-mix(in srgb, var(--gold) 88%, black); }
-html[data-theme="light"] .form__cta { background: var(--accent); }
-html[data-theme="light"] .form__cta:hover { background: color-mix(in srgb, var(--accent) 85%, black); }
 .form__legal {
   font-size: .72rem; color: var(--ink-soft);
   margin-top: .9rem; line-height: 1.45;
@@ -437,8 +440,9 @@ section { position: relative; }
 
 /* TIPOLOGIAS */
 .tipos__grid {
-  display: grid; grid-template-columns: 1fr 1fr 1fr;
-  gap: 1.4rem;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.6rem;
+  max-width: 880px; margin: 0 auto;
 }
 .tipo {
   background: var(--bg-alt);
@@ -555,7 +559,7 @@ section { position: relative; }
   padding: 7rem 0; text-align: center;
   position: relative; overflow: hidden;
 }
-html[data-theme="dark"] .cta-final { background: var(--gold); color: #0d0d0d; }
+html[data-theme="navy"] .cta-final { background: var(--gold); color: #0d0d0d; }
 .cta-final::before {
   content: ""; position: absolute;
   width: 600px; height: 600px; border-radius: 50%;
@@ -566,14 +570,14 @@ html[data-theme="dark"] .cta-final { background: var(--gold); color: #0d0d0d; }
 .cta-final__inner { position: relative; z-index: 2; max-width: 46rem; margin: 0 auto; }
 .cta-final .eyebrow { color: color-mix(in srgb, var(--on-accent) 70%, transparent); }
 .cta-final .eyebrow .dot { background: var(--gold); }
-html[data-theme="dark"] .cta-final .eyebrow .dot { background: #0d0d0d; }
+html[data-theme="navy"] .cta-final .eyebrow .dot { background: #0d0d0d; }
 .cta-final h2 {
   font-size: clamp(2.2rem, 5vw, 3.6rem);
   color: var(--on-accent);
   margin: 1rem auto 1.3rem;
 }
 .cta-final h2 .italic { color: var(--gold); }
-html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
+html[data-theme="navy"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
 .cta-final p { color: color-mix(in srgb, var(--on-accent) 75%, transparent); margin-bottom: 2.4rem; font-size: 1.1rem; }
 .cta-final .btn--wa { background: #25d366; }
 .cta-final .btn--ghost { color: var(--on-accent); border-color: color-mix(in srgb, var(--on-accent) 35%, transparent); }
@@ -678,7 +682,7 @@ html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
   pointer-events: none;
   animation: aurora 18s ease-in-out infinite alternate;
 }
-html[data-theme="dark"] .hero::after {
+html[data-theme="navy"] .hero::after {
   background:
     radial-gradient(40rem 40rem at 80% 30%, color-mix(in srgb, var(--gold) 30%, transparent), transparent 60%),
     radial-gradient(36rem 36rem at 20% 80%, color-mix(in srgb, #4a3a1f 60%, transparent), transparent 60%);
@@ -845,20 +849,6 @@ html[data-theme="dark"] .hero::after {
   position: relative;
 }
 
-/* Theme toggle premium */
-.theme-toggle {
-  position: relative;
-  overflow: hidden;
-}
-.theme-toggle::after {
-  content: ""; position: absolute; inset: 0;
-  background: radial-gradient(circle at center, var(--gold), transparent 65%);
-  opacity: 0; transform: scale(0); transform-origin: center;
-  transition: opacity .4s, transform .4s var(--ease);
-}
-.theme-toggle:hover::after { opacity: .25; transform: scale(1); }
-.theme-toggle:active { transform: scale(.92) rotate(180deg); }
-
 /* Spec counter — count-up effect */
 .spec .n { font-variant-numeric: tabular-nums; }
 
@@ -934,16 +924,11 @@ html[data-theme="dark"] .hero::after {
     <nav class="nav__links">
       <a href="#perfis">Pra quem é</a>
       <a href="#localizacao">Localização</a>
-      <a href="#apartamento">Apartamento</a>
-      <a href="#tipologias">Tipologias</a>
+      <a href="#tipologias">Apartamentos</a>
       <a href="#infra">Infraestrutura</a>
     </nav>
     <div class="nav__tools">
-      <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-      </button>
-      <a href="#hero-form" class="btn nav__cta">Falar com especialista</a>
+      <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn nav__cta">Falar com especialista</a>
       <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -951,49 +936,33 @@ html[data-theme="dark"] .hero::after {
 
 <!-- HERO -->
 <section class="hero" id="topo">
+  <div class="hero__bg">
+    <img src="assets/fachada-noite.jpg" alt="Today Chácara Santo Antônio — fachada" class="hero__img" />
+  </div>
   <div class="wrap hero__grid">
     <div class="hero__copy">
-      <h1 class="display">O imóvel certo para <span class="italic">morar bem</span> e <span class="italic">crescer mais.</span></h1>
-      <p class="hero__sub">Tem imóvel que entrega um lar. Tem imóvel que entrega rentabilidade. O Today Chácara Santo Antônio entrega os dois, no metro quadrado mais bem cotado da Zona Sul, a 450 metros do Metrô Santo Amaro e em frente ao Consulado Americano.</p>
-      <div class="hero__specs">
-        <div class="spec"><span class="n">1 e 2</span><span class="l">Dormitórios</span></div>
-        <div class="spec"><span class="n">29 a 40 m²</span><span class="l">Área privativa</span></div>
-        <div class="spec"><span class="n">450 m</span><span class="l">do Metrô Linha 5</span></div>
-        <div class="spec"><span class="n">421</span><span class="l">Unidades R2V</span></div>
-      </div>
-    </div>
-
-    <div class="hero__form" id="hero-form">
-      <h3 class="display">Fale com um <span class="italic">especialista.</span></h3>
-      <p class="sub">Tabela de lançamento, plantas e condições especiais direto com a Canopus. A reserva é por ordem de chegada.</p>
-      <form id="leadForm" novalidate>
-        <div class="field">
-          <label for="f-nome">Nome completo</label>
-          <input type="text" id="f-nome" name="nome" required autocomplete="name">
-        </div>
-        <div class="field">
-          <label for="f-email">E-mail</label>
-          <input type="email" id="f-email" name="email" required autocomplete="email">
-        </div>
-        <div class="field">
-          <label for="f-fone">Telefone com DDD</label>
-          <input type="tel" id="f-fone" name="telefone" required autocomplete="tel" placeholder="(11) 9 ____-____">
-        </div>
-        <div class="field">
-          <label for="f-perfil">Para quem você quer o imóvel?</label>
-          <select id="f-perfil" name="perfil" required>
-            <option value="">Selecione</option>
-            <option value="morar">Pra morar</option>
-            <option value="investir">Pra investir</option>
-            <option value="ambos">Pra morar e investir</option>
-          </select>
-        </div>
-        <button type="submit" class="form__cta">Quero conhecer agora</button>
-        <p class="form__legal">Ao enviar, você concorda em receber contato da nossa equipe comercial sobre o lançamento Today Chácara Santo Antônio. Seus dados são tratados de acordo com a LGPD.</p>
-      </form>
-      <div class="form__success" id="formSuccess">
-        <strong>Recebido.</strong> Em poucos minutos um especialista da Canopus vai entrar em contato com você. Fique atento ao seu WhatsApp.
-      </div>
+      <img src="assets/logo-today-dark.png" alt="Today Chácara Santo Antônio" class="hero__brand" />
+      <span class="hero__eyebrow">Today · Chácara Santo Antônio</span>
+      <h1>Endereço estratégico<br/>para <span class="strong">morar ou investir</span>.</h1>
+      <ul class="hero__features">
+        <li>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-7-7.58-7-12a7 7 0 0 1 14 0c0 4.42-7 12-7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+          <span><b>Em frente ao Consulado Americano</b></span>
+        </li>
+        <li>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg></span>
+          <span><b>No eixo corporativo Berrini</b> · Chucri Zaidan</span>
+        </li>
+        <li>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 14l4-8 4 8M8 14h8"/></svg></span>
+          <span><b>A 500m do Metrô Borba Gato</b></span>
+        </li>
+        <li>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 4l9 5.5V20a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1V9.5z"/></svg></span>
+          <span><b>1 ou 2 dorms · Sem vaga</b> · Mais procurados para locação</span>
+        </li>
+      </ul>
+      <p class="hero__note">Apartamento compacto em localização prime, feito para valorizar e rentabilizar.</p>
     </div>
   </div>
 </section>
@@ -1056,43 +1025,11 @@ html[data-theme="dark"] .hero::after {
   </div>
 </section>
 
-<!-- LANÇAMENTO + APARTAMENTO -->
-<section class="section section--alt" id="apartamento">
-  <div class="wrap">
-    <div class="duo__grid">
-      <div class="duo rv">
-        <h2 class="display">O momento certo para entrar é <span class="italic">no lançamento.</span></h2>
-        <p style="color:var(--ink-soft);line-height:1.65">O preço de lançamento é, por definição, o menor preço que essa unidade vai ter. A cada fase de obra o m² sobe. Quem entra primeiro paga menos, escolhe a melhor unidade e recebe a maior margem de valorização até a entrega.</p>
-        <ul class="lista">
-          <li><span class="n">01</span><div><div class="t">Preço de lançamento</div><div class="d">A menor margem de entrada do empreendimento. Acima de mil reais a menos por m² em relação à entrega.</div></div></li>
-          <li><span class="n">02</span><div><div class="t">Demanda garantida</div><div class="d">Chácara Santo Antônio tem uma das menores taxas de vacância de Zona Sul. Aluguel sai antes da obra ficar pronta.</div></div></li>
-          <li><span class="n">03</span><div><div class="t">Escolha de fim</div><div class="d">Andar alto, sol da manhã, vista preservada. Quem chega primeiro escolhe primeiro.</div></div></li>
-          <li><span class="n">04</span><div><div class="t">Unidades HMP e R2V</div><div class="d">Empreendimento dentro do programa habitacional, com condições facilitadas de financiamento e juros mais baixos para quem se enquadra.</div></div></li>
-        </ul>
-      </div>
-      <div class="duo rv" data-d="1">
-        <h2 class="display">Cada metro quadrado <span class="italic">pensado para render.</span></h2>
-        <p style="color:var(--ink-soft);line-height:1.65">Plantas compactas e inteligentes, de 29 a 40m², desenhadas para morar com conforto e alugar sem fricção. Quem mora aprecia o espaço bem aproveitado. Quem investe se beneficia da liquidez que plantas bem resolvidas geram.</p>
-        <div style="margin-top:1.8rem;display:grid;gap:.85rem">
-          <div style="padding:1.1rem 1.3rem;background:var(--bg-alt);border:1px solid var(--line);border-radius:14px"><strong style="font-family:var(--ff-display);font-weight:500;font-size:1.05rem">Studios e 1 dorm</strong> <span style="color:var(--ink-soft);font-size:.92rem">— 29m² a 32m². Pra quem mora sozinho, casal jovem ou primeiro investimento.</span></div>
-          <div style="padding:1.1rem 1.3rem;background:var(--bg-alt);border:1px solid var(--line);border-radius:14px"><strong style="font-family:var(--ff-display);font-weight:500;font-size:1.05rem">2 dormitórios</strong> <span style="color:var(--ink-soft);font-size:.92rem">— 37m² a 40m². Padrão tipo ou living ampliado, com varanda integrada.</span></div>
-          <div style="padding:1.1rem 1.3rem;background:var(--bg-alt);border:1px solid var(--line);border-radius:14px"><strong style="font-family:var(--ff-display);font-weight:500;font-size:1.05rem">Padrão de entrega Today</strong> <span style="color:var(--ink-soft);font-size:.92rem">— Marcenaria sob medida, cozinha equipada, piso vinílico, ar-condicionado e tomada para bicicleta elétrica.</span></div>
-        </div>
-        <div style="margin-top:2rem">
-          <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20a%20tabela%20de%20valores%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Pedir a tabela atualizada
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- TIPOLOGIAS -->
 <section class="section" id="tipologias">
   <div class="wrap">
     <div class="section__head rv">
-      <h2 class="display">Três opções, <span class="italic">o mesmo padrão Canopus.</span></h2>
+      <h2 class="display">Duas plantas, <span class="italic">o mesmo padrão Today.</span></h2>
       <p>Cada planta foi desenhada para entregar o máximo em pouco metro quadrado. Itens de série que normalmente vêm como opcional, aqui já entram no preço.</p>
     </div>
     <div class="tipos__grid">
@@ -1120,20 +1057,6 @@ html[data-theme="dark"] .hero::after {
           <li>Suíte (na opção living ampliado)</li>
           <li>Espaço home office</li>
           <li>Layout que aceita 4 pessoas</li>
-        </ul>
-      </article>
-      <article class="tipo padrao rv" data-d="3">
-        <div class="icon-star"><svg viewBox="0 0 24 24"><path d="M12 2l2.94 6.66L22 9.74l-5.32 4.93L18.36 22 12 18.27 5.64 22l1.68-7.33L2 9.74l7.06-1.08L12 2z"/></svg></div>
-        <h3>Padrão de entrega <span class="italic" style="display:block;font-size:1rem;letter-spacing:.04em">Canopus · Today</span></h3>
-        <div class="meta" style="margin-top:1rem">Tudo que vem dentro do preço</div>
-        <ul>
-          <li>Marcenaria sob medida</li>
-          <li>Cozinha com bancada e cubas</li>
-          <li>Vaso convencional dual flush</li>
-          <li>Infra de ar-condicionado split</li>
-          <li>Piso vinílico nas áreas internas</li>
-          <li>Portas em laminado amadeirado</li>
-          <li>Infra de lavanderia compacta</li>
         </ul>
       </article>
     </div>
@@ -1220,7 +1143,7 @@ html[data-theme="dark"] .hero::after {
       <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20garantir%20minha%20unidade%20no%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Garantir minha unidade
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <a href="#hero-form" class="btn btn--ghost">Voltar pro formulário</a>
+      <a href="#topo" class="btn btn--ghost">Conhecer o empreendimento</a>
     </div>
   </div>
 </section>
@@ -1260,20 +1183,6 @@ html[data-theme="dark"] .hero::after {
 </a>
 
 <script>
-// Theme toggle (prefers-color-scheme default, overridable via toggle, persists in localStorage)
-(function(){
-  const root = document.documentElement;
-  const stored = localStorage.getItem('canopus-theme');
-  const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
-  const initial = stored || (prefersDark ? 'dark' : 'light');
-  root.setAttribute('data-theme', initial);
-  document.getElementById('themeToggle').addEventListener('click', () => {
-    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    localStorage.setItem('canopus-theme', next);
-  });
-})();
-
 // Nav scroll state
 const nav = document.getElementById('nav');
 addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 30), { passive: true });
@@ -1283,22 +1192,6 @@ const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
 }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
-
-// Form submit (front-end only — backend a integrar depois)
-document.getElementById('leadForm').addEventListener('submit', (ev) => {
-  ev.preventDefault();
-  const form = ev.target;
-  const data = Object.fromEntries(new FormData(form));
-  if (!data.nome || !data.email || !data.telefone || !data.perfil) {
-    form.querySelectorAll('input,select').forEach(el => {
-      if (!el.value) el.style.borderColor = '#c33';
-    });
-    return;
-  }
-  console.log('[LEAD]', data);
-  form.style.display = 'none';
-  document.getElementById('formSuccess').classList.add('show');
-});
 
 // Mobile menu (overlay simples)
 const burger = document.querySelector('.nav__burger');
