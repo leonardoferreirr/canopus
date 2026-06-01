@@ -890,13 +890,27 @@ html[data-theme="navy"] .hero::after {
   .hero__grid, .loc__grid, .duo__grid, .perfis__grid { grid-template-columns: 1fr; gap: 3rem; }
   .tipos__grid { grid-template-columns: 1fr; }
   .infra__grid { grid-template-columns: 1fr 1fr; }
+  /* Hero mobile — imagem ocupa o hero todo, degradê vertical (de baixo pra cima)
+     pra deixar features e nota legíveis. Título mantém-se forte mesmo sobre a foto. */
+  .hero__img {
+    left: 0; width: 100%;
+    object-position: center 30%;
+    mask-image: linear-gradient(180deg, #000 0%, #000 35%, rgba(0,0,0,.55) 65%, transparent 92%);
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 35%, rgba(0,0,0,.55) 65%, transparent 92%);
+  }
+  .hero__bg::after {
+    background:
+      linear-gradient(180deg, rgba(8,17,30,.25) 0%, rgba(8,17,30,.55) 45%, rgba(8,17,30,.92) 75%, var(--bg) 100%);
+  }
+  .hero__copy { max-width: 100%; margin-left: 0; }
+  .hero__brand { height: 72px; margin-bottom: 1.4rem; }
 }
 @media (max-width: 680px) {
   .nav__links { display: none; }
   .nav__burger { display: flex; }
   .nav__cta { display: none; }
   .section { padding: 4.8rem 0; }
-  .hero { padding: 7.5rem 0 3.5rem; }
+  .hero { padding: 7.5rem 0 3.5rem; min-height: auto; }
   .hero__specs { gap: 1.4rem; }
   .loc__pontos { grid-template-columns: 1fr 1fr; gap: 1.2rem 1.4rem; }
   .galeria__grid { grid-template-columns: 1fr 1fr; aspect-ratio: auto; }
