@@ -138,15 +138,12 @@ html[data-theme="dark"] .btn { box-shadow: 0 14px 30px -12px rgba(214,178,113,.5
   transition: .4s var(--ease);
 }
 .nav.scrolled .nav__inner { box-shadow: var(--shadow-soft); }
-.nav__brand {
-  font-family: var(--ff-body);
-  font-weight: 700; letter-spacing: .14em;
-  font-size: .82rem;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-.nav__brand .sep { opacity: .35; margin: 0 .55rem; }
-.nav__brand .today { color: var(--accent); }
+.nav__brand { display: inline-flex; align-items: center; height: 28px; }
+.nav__brand img { height: 28px; width: auto; display: block; }
+.brand-dark { display: none; }
+.brand-light { display: block; }
+html[data-theme="dark"] .brand-light { display: none; }
+html[data-theme="dark"] .brand-dark { display: block; }
 .nav__links { display: flex; gap: 1.6rem; }
 .nav__links a {
   font-size: .88rem; font-weight: 500;
@@ -585,13 +582,8 @@ html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
   display: flex; justify-content: space-between; align-items: end;
   flex-wrap: wrap; gap: 2rem;
 }
-.footer__brand {
-  font-family: var(--ff-body); font-weight: 700;
-  font-size: .82rem; letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-.footer__brand .today { color: var(--accent); }
+.footer__brand { display: inline-flex; align-items: center; height: 44px; }
+.footer__brand img { height: 44px; width: auto; display: block; }
 .footer__addr {
   font-size: .9rem; color: var(--ink-soft);
   line-height: 1.6;
@@ -640,6 +632,261 @@ html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
 .rv[data-d="3"] { transition-delay: .24s }
 .rv[data-d="4"] { transition-delay: .32s }
 
+/* ============================================================
+   PREMIUM LAYER — efeitos de "10k dólares"
+   ============================================================ */
+
+/* Cursor follower dourado (escondido em touch) */
+.cursor-dot {
+  position: fixed; top: 0; left: 0;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gold);
+  pointer-events: none; z-index: 9999;
+  transform: translate3d(-100px,-100px,0);
+  transition: transform .04s linear, width .25s var(--ease), height .25s var(--ease), opacity .3s;
+  mix-blend-mode: difference;
+  opacity: 0;
+}
+.cursor-ring {
+  position: fixed; top: 0; left: 0;
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid var(--gold);
+  pointer-events: none; z-index: 9998;
+  transform: translate3d(-100px,-100px,0);
+  transition: transform .22s var(--ease), width .25s var(--ease), height .25s var(--ease), opacity .3s, border-color .3s;
+  opacity: 0;
+}
+.cursor-dot.show, .cursor-ring.show { opacity: 1; }
+.cursor-ring.hover { width: 64px; height: 64px; border-color: var(--accent); }
+.cursor-dot.hover { width: 4px; height: 4px; }
+@media (hover: none) { .cursor-dot, .cursor-ring { display: none; } }
+
+/* Aurora ambient atrás do hero (mancha de cor flutuando) */
+.hero { isolation: isolate; }
+.hero::after {
+  content: ""; position: absolute; inset: -20%;
+  background:
+    radial-gradient(40rem 40rem at 80% 30%, color-mix(in srgb, var(--accent-2) 22%, transparent), transparent 60%),
+    radial-gradient(36rem 36rem at 20% 80%, color-mix(in srgb, var(--gold) 18%, transparent), transparent 60%);
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
+  animation: aurora 18s ease-in-out infinite alternate;
+}
+html[data-theme="dark"] .hero::after {
+  background:
+    radial-gradient(40rem 40rem at 80% 30%, color-mix(in srgb, var(--gold) 30%, transparent), transparent 60%),
+    radial-gradient(36rem 36rem at 20% 80%, color-mix(in srgb, #4a3a1f 60%, transparent), transparent 60%);
+}
+@keyframes aurora {
+  0%   { transform: translate(0,0) scale(1); }
+  50%  { transform: translate(2%,-3%) scale(1.06); }
+  100% { transform: translate(-3%,2%) scale(.98); }
+}
+
+/* Hero H1 — reveal char-by-char (animação espacial) */
+.hero h1 .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(60%) rotate(4deg);
+  transition: opacity .9s var(--ease), transform .9s var(--ease);
+}
+.hero h1.in .char { opacity: 1; transform: none; }
+
+/* Hero form — gradient border animado */
+.hero__form {
+  position: relative;
+  background: var(--bg-alt);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+.hero__form::before {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: var(--radius-lg);
+  padding: 1px;
+  background: conic-gradient(from var(--angle, 0deg),
+    var(--gold) 0deg,
+    color-mix(in srgb, var(--gold) 20%, transparent) 80deg,
+    transparent 160deg,
+    color-mix(in srgb, var(--accent) 80%, transparent) 240deg,
+    var(--gold) 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  animation: rotateAngle 12s linear infinite;
+  pointer-events: none;
+}
+@property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+@keyframes rotateAngle {
+  to { --angle: 360deg; }
+}
+
+/* Glassmorphism premium nos cards perfil */
+.perfil {
+  position: relative;
+  isolation: isolate;
+  background: color-mix(in srgb, var(--bg-alt) 75%, transparent);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  overflow: hidden;
+  transition: transform .6s var(--ease), box-shadow .6s var(--ease);
+}
+.perfil::before {
+  content: ""; position: absolute;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--gold) 30%, transparent), transparent 70%);
+  top: -160px; right: -160px;
+  filter: blur(40px);
+  pointer-events: none;
+  transition: transform .8s var(--ease);
+  z-index: -1;
+}
+.perfil:hover::before { transform: translate(-40px,40px); }
+
+/* Tilt 3D nos cards perfil + tipologias */
+.perfil, .tipo {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.perfil.tilted, .tipo.tilted {
+  transform: perspective(900px) rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg));
+}
+
+/* Localização — pontos com sublinhado deslizando */
+.ponto { position: relative; }
+.ponto::after {
+  content: ""; position: absolute; left: 0; bottom: -10px;
+  width: 0; height: 1px; background: var(--gold);
+  transition: width .8s var(--ease);
+}
+.ponto.in::after { width: 80%; }
+
+/* Infra items — magnetic hover + reveal cascata */
+.infra-item {
+  position: relative; overflow: hidden;
+  transition: transform .45s var(--ease), border-color .45s var(--ease);
+}
+.infra-item::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at var(--mx,50%) var(--my,50%), color-mix(in srgb, var(--gold) 18%, transparent), transparent 50%);
+  opacity: 0;
+  transition: opacity .35s;
+  pointer-events: none;
+}
+.infra-item:hover::before { opacity: 1; }
+.infra-item:hover { transform: translateY(-3px) scale(1.02); border-color: var(--gold); }
+
+/* Tipo cards — borda dourada que aparece no hover */
+.tipo {
+  position: relative;
+  background: color-mix(in srgb, var(--bg-alt) 80%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.tipo::after {
+  content: ""; position: absolute; inset: 0;
+  border-radius: var(--radius-lg);
+  padding: 1px;
+  background: linear-gradient(135deg, var(--gold), transparent 50%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0; transition: opacity .5s;
+  pointer-events: none;
+}
+.tipo:hover::after { opacity: 1; }
+
+/* Galeria — overlay hover + parallax sutil em scroll */
+.galeria__item {
+  transform: translateZ(0);
+}
+.galeria__item::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, color-mix(in srgb, var(--accent) 70%, transparent));
+  opacity: 0; transition: opacity .5s;
+}
+.galeria__item:hover::after { opacity: .55; }
+.galeria__item img {
+  transform: scale(1.08);
+  transition: transform 1.5s var(--ease);
+}
+.galeria__item.in img { transform: scale(1); }
+
+/* CTA final — light beam que passa */
+.cta-final { position: relative; overflow: hidden; }
+.cta-final::after {
+  content: ""; position: absolute;
+  top: -50%; left: -100%;
+  width: 50%; height: 200%;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, #fff 12%, transparent), transparent);
+  transform: rotate(20deg);
+  animation: beam 6s linear infinite;
+  pointer-events: none;
+}
+@keyframes beam {
+  to { left: 200%; }
+}
+
+/* Magnetic CTAs (controlado por JS) */
+.btn, .form__cta, .wfloat {
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+
+/* Section reveal — desliza com sombra crescente */
+.section, .hero {
+  position: relative;
+}
+
+/* Theme toggle premium */
+.theme-toggle {
+  position: relative;
+  overflow: hidden;
+}
+.theme-toggle::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at center, var(--gold), transparent 65%);
+  opacity: 0; transform: scale(0); transform-origin: center;
+  transition: opacity .4s, transform .4s var(--ease);
+}
+.theme-toggle:hover::after { opacity: .25; transform: scale(1); }
+.theme-toggle:active { transform: scale(.92) rotate(180deg); }
+
+/* Spec counter — count-up effect */
+.spec .n { font-variant-numeric: tabular-nums; }
+
+/* Nav links — underline thin animado */
+.nav__links a {
+  position: relative;
+  padding: .25rem 0;
+}
+.nav__links a::after {
+  content: ""; position: absolute;
+  left: 0; bottom: 0; height: 1px; width: 0;
+  background: var(--gold);
+  transition: width .35s var(--ease);
+}
+.nav__links a:hover::after { width: 100%; }
+
+/* WhatsApp pill — sutil pulse no ícone */
+.wfloat__icon { position: relative; }
+.wfloat__icon::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  border: 2px solid #25d366;
+  animation: pulse 2.5s ease-out infinite;
+}
+@keyframes pulse {
+  0%   { transform: scale(1); opacity: .7; }
+  100% { transform: scale(1.45); opacity: 0; }
+}
+
+/* Form inputs — focus suave */
+.field input, .field select {
+  transition: border-color .3s, background .3s, box-shadow .3s;
+}
+.field input:focus, .field select:focus {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
 /* Responsive */
 @media (max-width: 980px) {
   .hero__grid, .loc__grid, .duo__grid, .perfis__grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -669,8 +916,9 @@ html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
 <!-- NAV -->
 <header class="nav" id="nav">
   <div class="wrap nav__inner">
-    <a href="#topo" class="nav__brand">
-      <span>Canopus</span><span class="sep">·</span><span class="today">Today</span>
+    <a href="#topo" class="nav__brand" aria-label="Canopus">
+      <img src="assets/logo-canopus-original.svg" alt="Canopus" class="brand-light">
+      <img src="assets/logo-canopus-dark.svg" alt="Canopus" class="brand-dark">
     </a>
     <nav class="nav__links">
       <a href="#perfis">Pra quem é</a>
@@ -694,7 +942,6 @@ html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
 <section class="hero" id="topo">
   <div class="wrap hero__grid">
     <div class="hero__copy">
-      <span class="eyebrow"><span class="dot"></span>Lançamento · Chácara Santo Antônio · SP</span>
       <h1 class="display">O imóvel certo para <span class="italic">morar bem</span> e <span class="italic">crescer mais.</span></h1>
       <p class="hero__sub">Tem imóvel que entrega um lar. Tem imóvel que entrega rentabilidade. O Today Chácara Santo Antônio entrega os dois, no metro quadrado mais bem cotado da Zona Sul, a 450 metros do Metrô Santo Amaro e em frente ao Consulado Americano.</p>
       <div class="hero__specs">
@@ -706,7 +953,6 @@ html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
     </div>
 
     <div class="hero__form" id="hero-form">
-      <span class="eyebrow"><span class="dot"></span>Garanta sua condição</span>
       <h3 class="display">Fale com um <span class="italic">especialista.</span></h3>
       <p class="sub">Tabela de lançamento, plantas e condições especiais direto com a Canopus. A reserva é por ordem de chegada.</p>
       <form id="leadForm" novalidate>
@@ -745,7 +991,6 @@ html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
 <section class="section section--alt" id="perfis">
   <div class="wrap">
     <div class="section__head rv">
-      <span class="eyebrow"><span class="dot"></span>Dois perfis · Uma escolha certa</span>
       <h2 class="display">Dois perfis. <span class="italic">Uma escolha certa.</span></h2>
       <p>Não importa se você está procurando o lar com mobilidade e qualidade de vida ou se está olhando potencial de valorização real. O Today Chácara Santo Antônio entrega para os dois, dentro do mesmo endereço.</p>
     </div>
@@ -778,7 +1023,6 @@ html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
 <section class="section" id="localizacao">
   <div class="wrap loc__grid">
     <div class="loc__copy rv">
-      <span class="eyebrow"><span class="dot"></span>Localização</span>
       <h2 class="display" style="font-size:clamp(2rem,4.4vw,3rem);margin:1rem 0 1.4rem">O endereço que <span class="italic">todo mundo quer estar.</span></h2>
       <p style="color:var(--ink-soft);line-height:1.65">A Chácara Santo Antônio é uma das regiões mais maduras de São Paulo. Bairro consolidado, infraestrutura completa, acesso rápido a dois nomes de metrô e a grandes centros comerciais. Lançamento aqui não é só um endereço bom: é um endereço que dificilmente perde valor.</p>
       <div class="destaque">
@@ -806,7 +1050,6 @@ html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
   <div class="wrap">
     <div class="duo__grid">
       <div class="duo rv">
-        <span class="eyebrow"><span class="dot"></span>Por que entrar agora</span>
         <h2 class="display">O momento certo para entrar é <span class="italic">no lançamento.</span></h2>
         <p style="color:var(--ink-soft);line-height:1.65">O preço de lançamento é, por definição, o menor preço que essa unidade vai ter. A cada fase de obra o m² sobe. Quem entra primeiro paga menos, escolhe a melhor unidade e recebe a maior margem de valorização até a entrega.</p>
         <ul class="lista">
@@ -817,7 +1060,6 @@ html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
         </ul>
       </div>
       <div class="duo rv" data-d="1">
-        <span class="eyebrow"><span class="dot"></span>O apartamento</span>
         <h2 class="display">Cada metro quadrado <span class="italic">pensado para render.</span></h2>
         <p style="color:var(--ink-soft);line-height:1.65">Plantas compactas e inteligentes, de 29 a 40m², desenhadas para morar com conforto e alugar sem fricção. Quem mora aprecia o espaço bem aproveitado. Quem investe se beneficia da liquidez que plantas bem resolvidas geram.</p>
         <div style="margin-top:1.8rem;display:grid;gap:.85rem">
@@ -839,7 +1081,6 @@ html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
 <section class="section" id="tipologias">
   <div class="wrap">
     <div class="section__head rv">
-      <span class="eyebrow"><span class="dot"></span>Tipologias</span>
       <h2 class="display">Três opções, <span class="italic">o mesmo padrão Canopus.</span></h2>
       <p>Cada planta foi desenhada para entregar o máximo em pouco metro quadrado. Itens de série que normalmente vêm como opcional, aqui já entram no preço.</p>
     </div>
@@ -897,7 +1138,6 @@ html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
 <section class="section section--alt" id="infra">
   <div class="wrap">
     <div class="section__head rv">
-      <span class="eyebrow"><span class="dot"></span>Infraestrutura</span>
       <h2 class="display">Lazer que <span class="italic">agrega valor, literalmente.</span></h2>
       <p>Pra quem mora: qualidade de vida todos os dias. Pra quem investe: uma lista de amenidades que sustenta aluguel mais alto e reduz vacância. Tudo entregue decorado e equipado, sem custo extra.</p>
     </div>
@@ -926,7 +1166,6 @@ html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
 <section class="section" id="galeria">
   <div class="wrap">
     <div class="section__head center rv">
-      <span class="eyebrow"><span class="dot"></span>Perspectivas ilustrativas</span>
       <h2 class="display">O dia a dia <span class="italic">já desenhado.</span></h2>
       <p>Cada espaço foi projetado por Ide Studio Arquitetura, paisagismo de Rossin & Tramontina e decoração da Claudia Albertini. Padrão Canopus por inteiro.</p>
     </div>
@@ -948,7 +1187,6 @@ html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
 <!-- CTA FINAL -->
 <section class="cta-final" id="garantir">
   <div class="wrap cta-final__inner rv">
-    <span class="eyebrow"><span class="dot"></span>O momento é agora</span>
     <h2 class="display">O melhor momento para agir é <span class="italic">agora.</span></h2>
     <p>As unidades de lançamento têm condições exclusivas e elas são limitadas. Reserve a sua antes de a tabela subir.</p>
     <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap">
@@ -965,8 +1203,11 @@ html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
   <div class="wrap">
     <div class="footer__inner">
       <div>
-        <div class="footer__brand"><span>Canopus</span> <span class="sep" style="opacity:.35">·</span> <span class="today">Today Chácara Santo Antônio</span></div>
-        <div class="footer__addr" style="margin-top:.6rem">Rua Henri Dunant, 332 · Chácara Santo Antônio · São Paulo · SP</div>
+        <a href="#topo" class="footer__brand" aria-label="Canopus">
+          <img src="assets/logo-canopus-original.svg" alt="Canopus" class="brand-light">
+          <img src="assets/logo-canopus-dark.svg" alt="Canopus" class="brand-dark">
+        </a>
+        <div class="footer__addr" style="margin-top:1rem">Today Chácara Santo Antônio<br>Rua Henri Dunant, 332 · Chácara Santo Antônio · São Paulo · SP</div>
       </div>
       <div class="footer__link"><a href="https://canopus.com.br" target="_blank" rel="noopener">canopus.com.br</a></div>
     </div>
@@ -977,6 +1218,10 @@ html[data-theme="dark"] .cta-final h2 .italic { color: #0d0d0d; opacity: .55; }
 </footer>
 
 <!-- WhatsApp float -->
+<!-- Cursor premium -->
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
 <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20saber%20sobre%20o%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="wfloat" aria-label="Fale com um especialista no WhatsApp" target="_blank" rel="noopener">
   <span class="wfloat__icon">
     <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5L8.8 7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.2.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.3-.6-.4M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2"/></svg>
@@ -1046,6 +1291,186 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+
+// ============================================================
+// PREMIUM LAYER — efeitos extras
+// ============================================================
+
+// Cursor follower (desktop only, sem touch)
+(function(){
+  if (matchMedia('(hover: none)').matches) return;
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let dx=0,dy=0,rx=0,ry=0,tx=0,ty=0;
+  let visible = false;
+  addEventListener('mousemove', (e) => {
+    tx = e.clientX; ty = e.clientY;
+    if (!visible) {
+      visible = true;
+      dot.classList.add('show'); ring.classList.add('show');
+    }
+  });
+  addEventListener('mouseleave', () => { dot.classList.remove('show'); ring.classList.remove('show'); visible = false; });
+  function loop(){
+    dx += (tx - dx) * 1;
+    dy += (ty - dy) * 1;
+    rx += (tx - rx) * .18;
+    ry += (ty - ry) * .18;
+    dot.style.transform = `translate3d(${dx-4}px,${dy-4}px,0)`;
+    ring.style.transform = `translate3d(${rx-18}px,${ry-18}px,0)`;
+    requestAnimationFrame(loop);
+  }
+  loop();
+  document.querySelectorAll('a, button, .perfil, .tipo, .infra-item, .galeria__item').forEach(el => {
+    el.addEventListener('mouseenter', () => { dot.classList.add('hover'); ring.classList.add('hover'); });
+    el.addEventListener('mouseleave', () => { dot.classList.remove('hover'); ring.classList.remove('hover'); });
+  });
+})();
+
+// Hero H1 — split em chars + reveal sequenciado
+(function(){
+  const h1 = document.querySelector('.hero h1');
+  if (!h1) return;
+  const html = h1.innerHTML;
+  // wrap só nos text nodes deixando spans (.italic) inteiros
+  const wrap = (node, base = 0) => {
+    let i = base;
+    [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        [...n.textContent].forEach(ch => {
+          if (ch === ' ') { frag.appendChild(document.createTextNode(' ')); return; }
+          const sp = document.createElement('span');
+          sp.className = 'char';
+          sp.style.transitionDelay = (i*0.025) + 's';
+          sp.textContent = ch;
+          frag.appendChild(sp);
+          i++;
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1) {
+        i = wrap(n, i);
+      }
+    });
+    return i;
+  };
+  wrap(h1);
+  // trigger
+  setTimeout(() => h1.classList.add('in'), 100);
+})();
+
+// Magnetic CTAs (desktop only)
+(function(){
+  if (matchMedia('(hover: none)').matches) return;
+  document.querySelectorAll('.btn, .form__cta, .wfloat').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const r = btn.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width/2) * .25;
+      const y = (e.clientY - r.top - r.height/2) * .25;
+      btn.style.transform = `translate3d(${x}px,${y - 2}px,0)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  });
+})();
+
+// Tilt 3D nos cards (desktop only)
+(function(){
+  if (matchMedia('(hover: none)').matches) return;
+  document.querySelectorAll('.perfil, .tipo').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      const tx = ((e.clientY - r.top) / r.height - .5) * -6;
+      const ty = ((e.clientX - r.left) / r.width - .5) * 8;
+      card.style.setProperty('--tx', tx + 'deg');
+      card.style.setProperty('--ty', ty + 'deg');
+      card.classList.add('tilted');
+    });
+    card.addEventListener('mouseleave', () => { card.classList.remove('tilted'); card.style.setProperty('--tx','0deg'); card.style.setProperty('--ty','0deg'); });
+  });
+})();
+
+// Infra items — gradient follow mouse
+(function(){
+  document.querySelectorAll('.infra-item').forEach(it => {
+    it.addEventListener('mousemove', (e) => {
+      const r = it.getBoundingClientRect();
+      it.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      it.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+    });
+  });
+})();
+
+// Count-up nos specs do hero
+(function(){
+  const specs = document.querySelectorAll('.hero__specs .spec .n');
+  const startCount = (el, target, suffix='') => {
+    const dur = 1400;
+    const t0 = performance.now();
+    const step = (t) => {
+      const p = Math.min(1, (t - t0) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const io2 = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (!e.isIntersecting) return;
+      specs.forEach(s => {
+        const txt = s.textContent.trim();
+        // pattern: "29 a 40 m²" → keep as-is. "1 e 2" idem. "450 m" idem. "421" → count.
+        if (/^\d+$/.test(txt)) {
+          startCount(s, parseInt(txt,10));
+        }
+      });
+      io2.disconnect();
+    });
+  }, { threshold: .4 });
+  if (specs[0]) io2.observe(specs[0]);
+})();
+
+// Pontos de localização — reveal cascata
+(function(){
+  const pontos = document.querySelectorAll('.ponto');
+  const io3 = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (e.isIntersecting) {
+        pontos.forEach((p,i) => setTimeout(() => p.classList.add('in'), i * 90));
+        io3.disconnect();
+      }
+    });
+  }, { threshold: .3 });
+  if (pontos[0]) io3.observe(pontos[0]);
+})();
+
+// Galeria — reveal stagger
+(function(){
+  const io4 = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.galeria__item').forEach((g,i) => setTimeout(() => g.classList.add('in'), i * 120));
+        io4.disconnect();
+      }
+    });
+  }, { threshold: .2 });
+  const gal = document.querySelector('.galeria__grid');
+  if (gal) io4.observe(gal);
+})();
+
+// Hero parallax sutil — foto bg desloca devagar
+(function(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y < innerHeight) {
+      hero.style.setProperty('--parallax', y + 'px');
+      hero.style.backgroundPositionY = (y * 0.3) + 'px';
+    }
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>
