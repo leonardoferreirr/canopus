@@ -331,31 +331,39 @@ section { position: relative; }
   margin-top: 3.5rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
 }
 
-/* DOIS PERFIS */
+/* DOIS PERFIS — sticky stack */
 .perfis__grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 2rem;
   margin-top: 3rem;
+  display: flex; flex-direction: column;
+  gap: 2.4rem;
 }
 .perfil {
-  background: var(--bg-alt);
+  position: sticky;
+  top: 110px;
+  min-height: 72vh;
+  display: flex; flex-direction: column; justify-content: center;
+  background: linear-gradient(180deg, #0d1a2c 0%, #0a1424 100%);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: 2.4rem 2rem;
-  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+  padding: 3rem 2.6rem;
+  box-shadow: var(--shadow);
 }
-.perfil:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.perfil:nth-child(2) {
+  top: 134px;
+  background: linear-gradient(180deg, #102339 0%, #0d1c30 100%);
+}
 .perfil .tag {
   display: inline-block;
   font-size: .72rem; font-weight: 600;
   letter-spacing: .16em; text-transform: uppercase;
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 14%, transparent);
   padding: .42rem .9rem; border-radius: 100px;
   margin-bottom: 1.2rem;
+  align-self: flex-start;
 }
-.perfil h3 { font-size: 1.65rem; margin-bottom: .7rem; line-height: 1.2; }
-.perfil p { color: var(--ink-soft); font-size: 1rem; line-height: 1.65; }
+.perfil h3 { font-size: clamp(1.65rem, 3vw, 2.2rem); margin-bottom: 1rem; line-height: 1.15; max-width: 18ch; }
+.perfil p { color: var(--ink-soft); font-size: 1.05rem; line-height: 1.65; max-width: 48ch; }
 
 /* LOCALIZAÇÃO */
 .loc__grid {
@@ -440,18 +448,29 @@ section { position: relative; }
 
 /* TIPOLOGIAS */
 .tipos__grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 1.6rem;
-  max-width: 880px; margin: 0 auto;
+  display: flex; flex-direction: column;
+  gap: 2.4rem;
+  max-width: 760px; margin: 0 auto;
 }
 .tipo {
-  background: var(--bg-alt);
+  position: sticky;
+  top: 110px;
+  min-height: 64vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 2.4rem;
+  align-items: center;
+  background: linear-gradient(180deg, #0d1a2c 0%, #0a1424 100%);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: 2.2rem;
-  transition: .4s var(--ease);
+  padding: 2.8rem;
+  box-shadow: var(--shadow);
 }
-.tipo:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.tipo:nth-child(2) {
+  top: 134px;
+  background: linear-gradient(180deg, #102339 0%, #0d1c30 100%);
+}
+.tipo .body { display: flex; flex-direction: column; }
 .tipo .num {
   font-family: var(--ff-display); font-weight: 500;
   font-size: 2.6rem; line-height: 1;
@@ -734,36 +753,22 @@ html[data-theme="navy"] .hero::after {
   to { --angle: 360deg; }
 }
 
-/* Glassmorphism premium nos cards perfil */
+/* Glow dourado no canto dos perfis (cards sticky) */
 .perfil {
-  position: relative;
   isolation: isolate;
-  background: color-mix(in srgb, var(--bg-alt) 75%, transparent);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
   overflow: hidden;
-  transition: transform .6s var(--ease), box-shadow .6s var(--ease);
 }
 .perfil::before {
   content: ""; position: absolute;
-  width: 320px; height: 320px;
-  background: radial-gradient(circle, color-mix(in srgb, var(--gold) 30%, transparent), transparent 70%);
-  top: -160px; right: -160px;
+  width: 360px; height: 360px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--gold) 24%, transparent), transparent 70%);
+  top: -180px; right: -180px;
   filter: blur(40px);
   pointer-events: none;
-  transition: transform .8s var(--ease);
-  z-index: -1;
+  z-index: 0;
 }
-.perfil:hover::before { transform: translate(-40px,40px); }
+.perfil > * { position: relative; z-index: 1; }
 
-/* Tilt 3D nos cards perfil + tipologias */
-.perfil, .tipo {
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-.perfil.tilted, .tipo.tilted {
-  transform: perspective(900px) rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg));
-}
 
 /* Localização — pontos com sublinhado deslizando */
 .ponto { position: relative; }
@@ -789,13 +794,7 @@ html[data-theme="navy"] .hero::after {
 .infra-item:hover::before { opacity: 1; }
 .infra-item:hover { transform: translateY(-3px) scale(1.02); border-color: var(--gold); }
 
-/* Tipo cards — borda dourada que aparece no hover */
-.tipo {
-  position: relative;
-  background: color-mix(in srgb, var(--bg-alt) 80%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
+/* Tipo cards — borda dourada animada (position controlado pelo bloco principal) */
 .tipo::after {
   content: ""; position: absolute; inset: 0;
   border-radius: var(--radius-lg);
@@ -887,9 +886,26 @@ html[data-theme="navy"] .hero::after {
 
 /* Responsive */
 @media (max-width: 980px) {
-  .hero__grid, .loc__grid, .duo__grid, .perfis__grid { grid-template-columns: 1fr; gap: 3rem; }
-  .tipos__grid { grid-template-columns: 1fr; }
+  .hero__grid, .loc__grid, .duo__grid { grid-template-columns: 1fr; gap: 3rem; }
   .infra__grid { grid-template-columns: 1fr 1fr; }
+  /* Tablet: sticky ainda ativo, mas tipo passa pra 1 coluna (planta em cima) */
+  .tipo { grid-template-columns: 1fr; gap: 1.4rem; padding: 2rem; min-height: 70vh; }
+  .perfil { padding: 2.4rem 1.8rem; min-height: 68vh; }
+}
+@media (max-width: 720px) {
+  /* Mobile real: desativa sticky stack — cards empilham normalmente */
+  .perfis__grid, .tipos__grid { gap: 1.6rem; }
+  .perfil, .tipo {
+    position: static;
+    min-height: 0;
+    top: auto;
+  }
+  .tipo { padding: 1.8rem; }
+  .perfil { padding: 2rem 1.5rem; }
+  /* Botões cabem em mobile (sem nowrap + width auto centralizado) */
+  .btn { white-space: normal; padding: .95rem 1.4rem; font-size: .9rem; text-align: center; line-height: 1.25; }
+  .btn--wa { width: 100%; justify-content: center; }
+  .galeria__cap { font-size: .64rem; padding: .32rem .6rem; }
   /* Hero mobile — imagem ocupa o hero todo, degradê vertical (de baixo pra cima)
      pra deixar features e nota legíveis. Título mantém-se forte mesmo sobre a foto. */
   .hero__img {
@@ -989,7 +1005,7 @@ html[data-theme="navy"] .hero::after {
       <p>Não importa se você está procurando o lar com mobilidade e qualidade de vida ou se está olhando potencial de valorização real. O Today Chácara Santo Antônio entrega para os dois, dentro do mesmo endereço.</p>
     </div>
     <div class="perfis__grid">
-      <article class="perfil rv" data-d="1">
+      <article class="perfil" data-d="1">
         <span class="tag">Para quem vai morar</span>
         <h3 class="display">Mobilidade, conforto e lazer, tudo na porta de casa.</h3>
         <p>Manhã com café no Mercadinho do Lar, almoço no Morumbi Shopping, treino antes do trabalho na academia do prédio e a Linha 5 do Metrô a uma caminhada de cinco minutos. Você ganha o que dinheiro não compra de volta: tempo de qualidade.</p>
@@ -999,7 +1015,7 @@ html[data-theme="navy"] .hero::after {
           </a>
         </div>
       </article>
-      <article class="perfil rv" data-d="2">
+      <article class="perfil" data-d="2">
         <span class="tag">Para quem vai investir</span>
         <h3 class="display">Localização que valoriza. Demanda que não para.</h3>
         <p>Bairro consolidado, metrô a pé e uma das regiões com maior demanda por aluguel de Zona Sul. Comprar no lançamento significa entrar pelo melhor preço, com a opção da Canopus de pagamento facilitado e a perspectiva de valorização real até a entrega da obra.</p>
@@ -1047,31 +1063,35 @@ html[data-theme="navy"] .hero::after {
       <p>Cada planta foi desenhada para entregar o máximo em pouco metro quadrado. Itens de série que normalmente vêm como opcional, aqui já entram no preço.</p>
     </div>
     <div class="tipos__grid">
-      <article class="tipo rv" data-d="1">
+      <article class="tipo" data-d="1">
         <div class="planta-thumb"><img src="assets/planta-2d-tipo.jpg" alt="Planta 1 dormitório"></div>
-        <div class="num">01</div>
-        <h3>1 Dormitório</h3>
-        <div class="meta">29 a 32 m² · Studio ou 1 dorm</div>
-        <ul>
-          <li>Varanda integrada à sala</li>
-          <li>Cozinha americana com bancada</li>
-          <li>Box e banheiro completo</li>
-          <li>Tomada para bicicleta elétrica</li>
-          <li>Pronta pra entrar e morar</li>
-        </ul>
+        <div class="body">
+          <div class="num">01</div>
+          <h3>1 Dormitório</h3>
+          <div class="meta">29 a 32 m² · Studio ou 1 dorm</div>
+          <ul>
+            <li>Varanda integrada à sala</li>
+            <li>Cozinha americana com bancada</li>
+            <li>Box e banheiro completo</li>
+            <li>Tomada para bicicleta elétrica</li>
+            <li>Pronta pra entrar e morar</li>
+          </ul>
+        </div>
       </article>
-      <article class="tipo rv" data-d="2">
+      <article class="tipo" data-d="2">
         <div class="planta-thumb"><img src="assets/planta-2d-ampliado.jpg" alt="Planta 2 dormitórios"></div>
-        <div class="num">02</div>
-        <h3>2 Dormitórios</h3>
-        <div class="meta">37 a 40 m² · Tipo ou living ampliado</div>
-        <ul>
-          <li>Varanda integrada à sala</li>
-          <li>Cozinha americana com bancada</li>
-          <li>Suíte (na opção living ampliado)</li>
-          <li>Espaço home office</li>
-          <li>Layout que aceita 4 pessoas</li>
-        </ul>
+        <div class="body">
+          <div class="num">02</div>
+          <h3>2 Dormitórios</h3>
+          <div class="meta">37 a 40 m² · Tipo ou living ampliado</div>
+          <ul>
+            <li>Varanda integrada à sala</li>
+            <li>Cozinha americana com bancada</li>
+            <li>Suíte (na opção living ampliado)</li>
+            <li>Espaço home office</li>
+            <li>Layout que aceita 4 pessoas</li>
+          </ul>
+        </div>
       </article>
     </div>
     <div class="section__cta rv">
@@ -1316,21 +1336,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 })();
 
-// Tilt 3D nos cards (desktop only)
-(function(){
-  if (matchMedia('(hover: none)').matches) return;
-  document.querySelectorAll('.perfil, .tipo').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const r = card.getBoundingClientRect();
-      const tx = ((e.clientY - r.top) / r.height - .5) * -6;
-      const ty = ((e.clientX - r.left) / r.width - .5) * 8;
-      card.style.setProperty('--tx', tx + 'deg');
-      card.style.setProperty('--ty', ty + 'deg');
-      card.classList.add('tilted');
-    });
-    card.addEventListener('mouseleave', () => { card.classList.remove('tilted'); card.style.setProperty('--tx','0deg'); card.style.setProperty('--ty','0deg'); });
-  });
-})();
+// Tilt 3D desabilitado nos cards perfil/tipo — eles agora usam position:sticky
+// e transforms quebram o sticky positioning.
 
 // Infra items — gradient follow mouse
 (function(){
