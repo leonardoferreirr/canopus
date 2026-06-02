@@ -7,7 +7,7 @@
 <meta name="description" content="Lançamento Canopus na Chácara Santo Antônio. Apartamentos de 1 e 2 dorms, 29 a 40m², a 450m do Metrô Linha Lilás e em frente ao Consulado Americano. Para morar bem e crescer com o investimento.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    CANOPUS · TODAY CHÁCARA SANTO ANTÔNIO
@@ -16,8 +16,8 @@
    ============================================================ */
 
 :root {
-  --ff-display: "Fraunces", Georgia, serif;
-  --ff-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --ff-display: "Poppins", -apple-system, BlinkMacSystemFont, sans-serif;
+  --ff-body: "Poppins", -apple-system, BlinkMacSystemFont, sans-serif;
   --ease: cubic-bezier(.22, 1, .36, 1);
   --maxw: 1240px;
   --radius: 18px;
@@ -64,7 +64,7 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.05;
   letter-spacing: -.018em;
 }
-.italic { font-style: italic; color: var(--accent); font-weight: 500; }
+.italic { color: var(--accent); font-weight: 500; }
 html[data-theme="navy"] .italic { color: var(--accent); }
 
 .eyebrow {
@@ -76,7 +76,7 @@ html[data-theme="navy"] .italic { color: var(--accent); }
 }
 .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 
-h2 { font-family: var(--ff-display); font-weight: 400; letter-spacing: -.015em; }
+h2 { font-family: var(--ff-display); font-weight: 300; letter-spacing: -.015em; }
 h3 { font-family: var(--ff-display); font-weight: 400; letter-spacing: -.01em; }
 h4 { font-family: var(--ff-body); font-weight: 600; }
 
@@ -162,20 +162,18 @@ html[data-theme="navy"] .btn { box-shadow: 0 14px 30px -12px rgba(214,178,113,.5
 }
 .hero__img {
   position: absolute;
-  left: -6%; top: 0; bottom: 0;
+  left: 0; top: 0; right: 0; bottom: 0;
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: center center;
-  filter: brightness(.55) contrast(1.18) saturate(.85) hue-rotate(-12deg);
-  mask-image: linear-gradient(120deg, #000 0%, rgba(0,0,0,.75) 35%, rgba(0,0,0,.4) 65%, transparent 100%);
-  -webkit-mask-image: linear-gradient(120deg, #000 0%, rgba(0,0,0,.75) 35%, rgba(0,0,0,.4) 65%, transparent 100%);
+  filter: brightness(.68) contrast(1.12) saturate(.92) hue-rotate(-8deg);
 }
 .hero__bg::after {
   content: "";
   position: absolute; inset: 0;
   background:
-    radial-gradient(70% 90% at 25% 40%, rgba(8,17,30,.45) 0%, rgba(8,17,30,.92) 75%, var(--bg) 100%),
-    linear-gradient(180deg, var(--bg) 0%, transparent 18%, transparent 82%, var(--bg) 100%);
+    linear-gradient(90deg, rgba(8,17,30,.82) 0%, rgba(8,17,30,.55) 38%, rgba(8,17,30,.28) 60%, rgba(8,17,30,.15) 100%),
+    linear-gradient(180deg, rgba(8,17,30,.35) 0%, transparent 25%, transparent 70%, rgba(8,17,30,.55) 100%);
 }
 .hero__grid {
   position: relative; z-index: 2;
@@ -238,6 +236,82 @@ html[data-theme="navy"] .btn { box-shadow: 0 14px 30px -12px rgba(214,178,113,.5
   line-height: 1.55; max-width: 30rem;
 }
 
+/* FOTOS-FIRST — galeria mosaic edge-to-edge logo após o hero */
+.fotos-first{
+  background: var(--bg);
+  padding: 0;
+  position: relative;
+}
+.fotos-first__grid{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 240px;
+  gap: 2px;
+  width: 100%;
+}
+.fotos-first__item{
+  position: relative;
+  overflow: hidden;
+  background: #0a1524;
+  display: block;
+  grid-column: span 4;
+  grid-row: span 1;
+  text-decoration: none;
+}
+.fotos-first__item img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease), filter .4s var(--ease);
+  filter: brightness(.92);
+}
+.fotos-first__item:hover img{ transform: scale(1.04); filter: brightness(1); }
+.fotos-first__item::after{
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.65) 100%);
+  pointer-events: none;
+  opacity: .85;
+  transition: opacity .4s var(--ease);
+}
+.fotos-first__item:hover::after{ opacity: 1; }
+.fotos-first__cap{
+  position: absolute;
+  bottom: 16px; left: 18px;
+  font-family: var(--ff-body);
+  font-weight: 500;
+  font-size: .82rem;
+  color: #fff;
+  letter-spacing: .04em;
+  z-index: 2;
+}
+/* Wide hero item — pega 8 colunas e 2 rows */
+.fotos-first__item--wide{
+  grid-column: span 8;
+  grid-row: span 2;
+}
+.fotos-first__item--wide .fotos-first__cap{
+  font-size: 1rem;
+  bottom: 24px; left: 26px;
+}
+@media (max-width: 980px){
+  .fotos-first__grid{
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 180px;
+  }
+  .fotos-first__item{ grid-column: span 3; }
+  .fotos-first__item--wide{ grid-column: span 6; grid-row: span 2; }
+}
+@media (max-width: 680px){
+  .fotos-first__grid{
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+    gap: 1px;
+  }
+  .fotos-first__item{ grid-column: span 1; grid-row: span 1; }
+  .fotos-first__item--wide{ grid-column: span 2; grid-row: span 1; }
+  .fotos-first__cap{ font-size: .76rem; }
+}
+
 /* Form card sticky sobre a foto */
 .hero__form {
   background: linear-gradient(180deg, rgba(13,26,44,.96) 0%, rgba(10,21,36,.94) 100%);
@@ -259,7 +333,7 @@ html[data-theme="navy"] .btn { box-shadow: 0 14px 30px -12px rgba(214,178,113,.5
   font-size: 1.6rem; line-height: 1.15;
   margin-bottom: .55rem; color: var(--ink);
 }
-.hero__form h3 .italic { color: var(--accent); font-style: italic; }
+.hero__form h3 .italic { color: var(--accent); font-weight: 500; }
 .hero__form p.sub {
   font-size: .9rem; color: var(--ink-soft);
   margin-bottom: 1.3rem; line-height: 1.5;
@@ -1036,6 +1110,48 @@ html[data-theme="navy"] .hero::after {
       </ul>
       <p class="hero__note">Apartamento compacto em localização prime, feito para valorizar e rentabilizar.</p>
     </div>
+  </div>
+</section>
+
+<!-- FOTOS-FIRST — galeria que entra logo após o hero, sem textos antes -->
+<section class="fotos-first" id="fotos">
+  <div class="fotos-first__grid">
+    <a class="fotos-first__item fotos-first__item--wide" href="#fotos">
+      <img src="assets/foto-portico.jpg" alt="Pórtico do Today Chácara Santo Antônio" loading="lazy" />
+      <span class="fotos-first__cap">Pórtico do Today</span>
+    </a>
+    <a class="fotos-first__item" href="#fotos">
+      <img src="assets/foto-sala-2dorms.jpg" alt="Sala do apartamento 2 dorms — 39m²" loading="lazy" />
+      <span class="fotos-first__cap">Apartamento 2 dorms · 39m²</span>
+    </a>
+    <a class="fotos-first__item" href="#fotos">
+      <img src="assets/foto-cozinha-2dorms.jpg" alt="Cozinha integrada do 2 dorms ampliado" loading="lazy" />
+      <span class="fotos-first__cap">Cozinha integrada</span>
+    </a>
+    <a class="fotos-first__item" href="#fotos">
+      <img src="assets/foto-sala-1dorm.jpg" alt="Sala do apartamento 1 dorm — 30m²" loading="lazy" />
+      <span class="fotos-first__cap">Apartamento 1 dorm · 30m²</span>
+    </a>
+    <a class="fotos-first__item" href="#fotos">
+      <img src="assets/foto-bar-piscina.jpg" alt="Bar da piscina" loading="lazy" />
+      <span class="fotos-first__cap">Bar da piscina</span>
+    </a>
+    <a class="fotos-first__item" href="#fotos">
+      <img src="assets/foto-salao-festas.jpg" alt="Salão de festas" loading="lazy" />
+      <span class="fotos-first__cap">Salão de festas</span>
+    </a>
+    <a class="fotos-first__item" href="#fotos">
+      <img src="assets/churrasqueira.jpg" alt="Churrasqueira" loading="lazy" />
+      <span class="fotos-first__cap">Churrasqueira</span>
+    </a>
+    <a class="fotos-first__item" href="#fotos">
+      <img src="assets/praca.jpg" alt="Praça da Árvore" loading="lazy" />
+      <span class="fotos-first__cap">Praça da Árvore</span>
+    </a>
+    <a class="fotos-first__item" href="#fotos">
+      <img src="assets/lobby.jpg" alt="Lobby" loading="lazy" />
+      <span class="fotos-first__cap">Lobby</span>
+    </a>
   </div>
 </section>
 
