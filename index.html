@@ -166,14 +166,14 @@ html[data-theme="navy"] .btn { box-shadow: 0 14px 30px -12px rgba(214,178,113,.5
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: center center;
-  filter: brightness(.68) contrast(1.12) saturate(.92) hue-rotate(-8deg);
+  filter: brightness(.84) contrast(1.06) saturate(.97) hue-rotate(-3deg);
 }
 .hero__bg::after {
   content: "";
   position: absolute; inset: 0;
   background:
-    linear-gradient(90deg, rgba(8,17,30,.82) 0%, rgba(8,17,30,.55) 38%, rgba(8,17,30,.28) 60%, rgba(8,17,30,.15) 100%),
-    linear-gradient(180deg, rgba(8,17,30,.35) 0%, transparent 25%, transparent 70%, rgba(8,17,30,.55) 100%);
+    linear-gradient(90deg, rgba(8,17,30,.64) 0%, rgba(8,17,30,.34) 38%, rgba(8,17,30,.15) 60%, rgba(8,17,30,.05) 100%),
+    linear-gradient(180deg, rgba(8,17,30,.26) 0%, transparent 28%, transparent 72%, rgba(8,17,30,.42) 100%);
 }
 .hero__grid {
   position: relative; z-index: 2;
@@ -181,7 +181,7 @@ html[data-theme="navy"] .btn { box-shadow: 0 14px 30px -12px rgba(214,178,113,.5
   grid-template-areas:
     "head form"
     "list form";
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: 1.25fr 0.78fr;
   grid-template-rows: auto 1fr;
   column-gap: 3.5rem; row-gap: 2rem;
   align-items: start;
@@ -319,7 +319,7 @@ html[data-theme="navy"] .btn { box-shadow: 0 14px 30px -12px rgba(214,178,113,.5
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: 2rem 1.8rem;
+  padding: 1.5rem 1.45rem;
   box-shadow: 0 28px 60px -20px rgba(0,0,0,.6);
 }
 .hero__form-eyebrow {
@@ -330,17 +330,17 @@ html[data-theme="navy"] .btn { box-shadow: 0 14px 30px -12px rgba(214,178,113,.5
 }
 .hero__form h3 {
   font-family: var(--ff-display); font-weight: 400;
-  font-size: 1.6rem; line-height: 1.15;
-  margin-bottom: .55rem; color: var(--ink);
+  font-size: 1.3rem; line-height: 1.15;
+  margin-bottom: .45rem; color: var(--ink);
 }
 .hero__form h3 .italic { color: var(--accent); font-weight: 500; }
 .hero__form p.sub {
-  font-size: .9rem; color: var(--ink-soft);
-  margin-bottom: 1.3rem; line-height: 1.5;
+  font-size: .86rem; color: var(--ink-soft);
+  margin-bottom: .9rem; line-height: 1.45;
 }
 .field {
-  display: flex; flex-direction: column; gap: .35rem;
-  margin-bottom: 1rem;
+  display: flex; flex-direction: column; gap: .3rem;
+  margin-bottom: .72rem;
 }
 .field label {
   font-size: .74rem; font-weight: 600;
@@ -351,7 +351,7 @@ html[data-theme="navy"] .btn { box-shadow: 0 14px 30px -12px rgba(214,178,113,.5
   background: var(--bg);
   border: 1px solid var(--line);
   border-radius: 12px;
-  padding: .85rem 1rem;
+  padding: .7rem .9rem;
   font-family: inherit;
   font-size: .96rem;
   color: var(--ink);
@@ -629,17 +629,28 @@ section { position: relative; }
   font-size: .96rem; color: var(--ink);
   line-height: 1.2;
 }
+/* INFRA — duas linhas em carrossel infinito (direções opostas) */
+.infra-marq { display: flex; flex-direction: column; gap: 1rem; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.infra-row { display: flex; gap: 1rem; width: max-content; will-change: transform; }
+.infra-row.a { animation: infraL 52s linear infinite; }
+.infra-row.b { animation: infraR 60s linear infinite; }
+.infra-marq:hover .infra-row { animation-play-state: paused; }
+.infra-row .infra-item { flex-shrink: 0; min-width: 210px; }
+@keyframes infraL { from { transform: translateX(0); } to { transform: translateX(calc(-50% - .5rem)); } }
+@keyframes infraR { from { transform: translateX(calc(-50% - .5rem)); } to { transform: translateX(0); } }
 
 /* GALERIA */
 .galeria__grid {
   display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 1fr 1fr;
-  gap: 1rem;
-  aspect-ratio: 2 / 1.05;
+  gap: 2px;
+  width: 100%;
+  aspect-ratio: 2 / 0.92;
 }
 .galeria__item {
-  border-radius: var(--radius); overflow: hidden;
+  border-radius: 0; overflow: hidden;
   position: relative;
-  box-shadow: var(--shadow-soft);
 }
 .galeria__item img {
   width: 100%; height: 100%; object-fit: cover;
@@ -1100,12 +1111,8 @@ html[data-theme="navy"] .hero::after {
           <span><b>No eixo corporativo Berrini</b> · Chucri Zaidan</span>
         </li>
         <li>
-          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 14l4-8 4 8M8 14h8"/></svg></span>
-          <span><b>A 500m do Metrô Borba Gato</b></span>
-        </li>
-        <li>
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 4l9 5.5V20a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1V9.5z"/></svg></span>
-          <span><b>1 ou 2 dorms · Sem vaga</b> · Mais procurados para locação</span>
+          <span><b>1 ou 2 dormitórios</b></span>
         </li>
       </ul>
       <p class="hero__note">Apartamento compacto em localização prime, feito para valorizar e rentabilizar.</p>
@@ -1187,28 +1194,26 @@ html[data-theme="navy"] .hero::after {
   </div>
 </section>
 
-<!-- LOCALIZAÇÃO -->
-<section class="section" id="localizacao">
-  <div class="wrap loc__grid">
-    <div class="loc__copy rv">
-      <h2 class="display" style="font-size:clamp(2rem,4.4vw,3rem);margin:1rem 0 1.4rem">O endereço que <span class="italic">todo mundo quer estar.</span></h2>
-      <p style="color:var(--ink-soft);line-height:1.65">A Chácara Santo Antônio é uma das regiões mais maduras de São Paulo. Bairro consolidado, infraestrutura completa, acesso rápido a dois nomes de metrô e a grandes centros comerciais. Lançamento aqui não é só um endereço bom: é um endereço que dificilmente perde valor.</p>
-      <div class="destaque">
-        <strong>Em frente ao Consulado Americano,</strong> em um endereço que é referência de prestígio na Zona Sul. Pra quem mora, status e segurança. Pra quem investe, um ativo que não perde valor.
-      </div>
-      <div style="margin-top:1.8rem">
-        <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20o%20mapa%20completo%20da%20regi%C3%A3o%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Receber o mapa completo
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-      </div>
+<!-- GALERIA (trocada de posição com Localização) -->
+<section class="section" id="galeria">
+  <div class="wrap">
+    <div class="section__head center rv">
+      <h2 class="display">O dia a dia <span class="italic">já desenhado.</span></h2>
+      <p>Cada espaço foi projetado por Ide Studio Arquitetura, paisagismo de Rossin & Tramontina e decoração da Claudia Albertini. Padrão Canopus por inteiro.</p>
     </div>
-    <div class="loc__pontos rv" data-d="1">
-      <div class="ponto"><span class="n">6<sub>MIN</sub></span><span class="l">A pé</span><span class="d">Metrô Santo Amaro</span></div>
-      <div class="ponto"><span class="n">4<sub>MIN</sub></span><span class="l">De carro</span><span class="d">Morumbi Shopping</span></div>
-      <div class="ponto"><span class="n">5<sub>MIN</sub></span><span class="l">De carro</span><span class="d">Parque Severo Gomes</span></div>
-      <div class="ponto"><span class="n">5<sub>MIN</sub></span><span class="l">A pé</span><span class="d">Estação Granja Julieta</span></div>
-      <div class="ponto"><span class="n">8<sub>MIN</sub></span><span class="l">De carro</span><span class="d">Av. Santo Amaro</span></div>
-      <div class="ponto em-frente"><span class="n">Em frente</span><span class="l">·</span><span class="d">Consulado Americano</span></div>
+  </div>
+  <div class="galeria__grid rv">
+    <div class="galeria__item wide"><img src="assets/praca.jpg" alt="Praça externa"><span class="galeria__cap">Praça da Árvore</span></div>
+    <div class="galeria__item"><img src="assets/lobby.jpg" alt="Lobby de entrada"><span class="galeria__cap">Lobby</span></div>
+    <div class="galeria__item"><img src="assets/churrasqueira.jpg" alt="Lounge churrasqueira"><span class="galeria__cap">Churrasqueira</span></div>
+    <div class="galeria__item"><img src="assets/bicicletario.jpg" alt="Bicicletário"><span class="galeria__cap">Bicicletário</span></div>
+    <div class="galeria__item"><img src="assets/delivery.jpg" alt="Espaço delivery"><span class="galeria__cap">Delivery</span></div>
+  </div>
+  <div class="wrap">
+    <div class="section__cta rv" style="margin-top:2rem">
+      <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20conhecer%20o%20decorado%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Agendar visita ao decorado
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -1267,61 +1272,53 @@ html[data-theme="navy"] .hero::after {
       <h2 class="display">Lazer que <span class="italic">agrega valor, literalmente.</span></h2>
       <p>Pra quem mora: qualidade de vida todos os dias. Pra quem investe: uma lista de amenidades que sustenta aluguel mais alto e reduz vacância. Tudo entregue decorado e equipado, sem custo extra.</p>
     </div>
-    <div class="infra__grid">
-      <!-- Piscina: ondas -->
-      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M2 12c2-2 4 2 6 0s4-2 6 0 4 2 6 0M2 17c2-2 4 2 6 0s4-2 6 0 4 2 6 0"/></svg></div><span class="l">Piscina</span></div>
-      <!-- Academia: halter -->
-      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 10v4M6 7v10M18 7v10M21 10v4M6 12h12"/></svg></div><span class="l">Academia</span></div>
-      <!-- Churrasqueira: foguinho (chama) -->
-      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3c1.5 3 4 5 4 8a4 4 0 0 1-8 0c0-2 1-3 2-4M12 11c.5 1 1.5 1.5 1.5 3a1.5 1.5 0 0 1-3 0c0-.8.5-1.3 1.5-3z"/></svg></div><span class="l">Churrasqueira</span></div>
-      <!-- Salão de Festas: confete (chapéu + estrelinhas) -->
-      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M6 21l5-14 7 14zM4 11l2-1M18 4l2-1M14 4l1-2M20 11l2-1M6 16l-2 1"/></svg></div><span class="l">Salão de Festas</span></div>
-      <!-- Coworking: notebook -->
-      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg></div><span class="l">Coworking</span></div>
-      <!-- Coliving: 2 pessoas -->
-      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20c0-3 2.5-5 6-5s6 2 6 5M13 20c.4-2 2.5-3.5 4-3.5s3.6 1.5 4 3.5"/></svg></div><span class="l">Coliving</span></div>
-      <!-- Salão de Jogos: dice -->
-      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2.5"/><circle cx="9" cy="9" r=".9" fill="currentColor"/><circle cx="15" cy="9" r=".9" fill="currentColor"/><circle cx="12" cy="12" r=".9" fill="currentColor"/><circle cx="9" cy="15" r=".9" fill="currentColor"/><circle cx="15" cy="15" r=".9" fill="currentColor"/></svg></div><span class="l">Salão de Jogos</span></div>
-      <!-- Pet Place: cachorro -->
-      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 9l2-4 2 3M16 8l2-3 2 4M5 9c0 6 3 11 7 11s7-5 7-11M9 13a1 1 0 0 0 0 2M15 13a1 1 0 0 0 0 2M10 18c.6.5 1.3.6 2 .6s1.4-.1 2-.6"/></svg></div><span class="l">Pet Place</span></div>
-      <!-- Playground: bola -->
-      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></div><span class="l">Playground</span></div>
-      <!-- Brinquedoteca: bola (mesma) -->
-      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></div><span class="l">Brinquedoteca</span></div>
-      <!-- Lavanderia: wifi -->
-      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M2 9a17 17 0 0 1 20 0M5 13a12 12 0 0 1 14 0M8 17a7 7 0 0 1 8 0"/><circle cx="12" cy="20.5" r=".8" fill="currentColor"/></svg></div><span class="l">Lavanderia</span></div>
-      <!-- Praça da Árvore: árvore só -->
-      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3c-3 2-5 5-5 7a3 3 0 0 0 3 3h4a3 3 0 0 0 3-3c0-2-2-5-5-7zM12 13v8M10 21h4"/></svg></div><span class="l">Praça da Árvore</span></div>
-      <!-- Hall Social: casa -->
-      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-4v-7h-8v7H4a1 1 0 0 1-1-1z"/></svg></div><span class="l">Hall Social</span></div>
-      <!-- Bicicletário: bicicleta -->
-      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="5.5" cy="15.5" r="3.5"/><circle cx="18.5" cy="15.5" r="3.5"/><path d="M5.5 15.5l3-7h4l3 7M9 8h4M14 4h2l3 4"/></svg></div><span class="l">Bicicletário</span></div>
-      <!-- Job & Joy: maleta -->
-      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M3 13h18"/></svg></div><span class="l">Job & Joy</span></div>
-      <!-- Academia Exterior: halter (mesmo) -->
-      <div class="infra-item rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 10v4M6 7v10M18 7v10M21 10v4M6 12h12"/></svg></div><span class="l">Academia Exterior</span></div>
+    <div class="infra-marq">
+      <div class="infra-row a" id="infraA">
+        <div class="infra-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M2 12c2-2 4 2 6 0s4-2 6 0 4 2 6 0M2 17c2-2 4 2 6 0s4-2 6 0 4 2 6 0"/></svg></div><span class="l">Piscina</span></div>
+        <div class="infra-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 10v4M6 7v10M18 7v10M21 10v4M6 12h12"/></svg></div><span class="l">Academia</span></div>
+        <div class="infra-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3c1.5 3 4 5 4 8a4 4 0 0 1-8 0c0-2 1-3 2-4M12 11c.5 1 1.5 1.5 1.5 3a1.5 1.5 0 0 1-3 0c0-.8.5-1.3 1.5-3z"/></svg></div><span class="l">Churrasqueira</span></div>
+        <div class="infra-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M6 21l5-14 7 14zM4 11l2-1M18 4l2-1M14 4l1-2M20 11l2-1M6 16l-2 1"/></svg></div><span class="l">Salão de Festas</span></div>
+        <div class="infra-item"><div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg></div><span class="l">Coworking</span></div>
+        <div class="infra-item"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20c0-3 2.5-5 6-5s6 2 6 5M13 20c.4-2 2.5-3.5 4-3.5s3.6 1.5 4 3.5"/></svg></div><span class="l">Coliving</span></div>
+        <div class="infra-item"><div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2.5"/><circle cx="9" cy="9" r=".9" fill="currentColor"/><circle cx="15" cy="9" r=".9" fill="currentColor"/><circle cx="12" cy="12" r=".9" fill="currentColor"/><circle cx="9" cy="15" r=".9" fill="currentColor"/><circle cx="15" cy="15" r=".9" fill="currentColor"/></svg></div><span class="l">Salão de Jogos</span></div>
+        <div class="infra-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 9l2-4 2 3M16 8l2-3 2 4M5 9c0 6 3 11 7 11s7-5 7-11M9 13a1 1 0 0 0 0 2M15 13a1 1 0 0 0 0 2M10 18c.6.5 1.3.6 2 .6s1.4-.1 2-.6"/></svg></div><span class="l">Pet Place</span></div>
+      </div>
+      <div class="infra-row b" id="infraB">
+        <div class="infra-item"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></div><span class="l">Playground</span></div>
+        <div class="infra-item"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></div><span class="l">Brinquedoteca</span></div>
+        <div class="infra-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M2 9a17 17 0 0 1 20 0M5 13a12 12 0 0 1 14 0M8 17a7 7 0 0 1 8 0"/><circle cx="12" cy="20.5" r=".8" fill="currentColor"/></svg></div><span class="l">Lavanderia</span></div>
+        <div class="infra-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3c-3 2-5 5-5 7a3 3 0 0 0 3 3h4a3 3 0 0 0 3-3c0-2-2-5-5-7zM12 13v8M10 21h4"/></svg></div><span class="l">Praça da Árvore</span></div>
+        <div class="infra-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-4v-7h-8v7H4a1 1 0 0 1-1-1z"/></svg></div><span class="l">Hall Social</span></div>
+        <div class="infra-item"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="5.5" cy="15.5" r="3.5"/><circle cx="18.5" cy="15.5" r="3.5"/><path d="M5.5 15.5l3-7h4l3 7M9 8h4M14 4h2l3 4"/></svg></div><span class="l">Bicicletário</span></div>
+        <div class="infra-item"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M3 13h18"/></svg></div><span class="l">Job & Joy</span></div>
+        <div class="infra-item"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 10v4M6 7v10M18 7v10M21 10v4M6 12h12"/></svg></div><span class="l">Academia Exterior</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- GALERIA -->
-<section class="section" id="galeria">
-  <div class="wrap">
-    <div class="section__head center rv">
-      <h2 class="display">O dia a dia <span class="italic">já desenhado.</span></h2>
-      <p>Cada espaço foi projetado por Ide Studio Arquitetura, paisagismo de Rossin & Tramontina e decoração da Claudia Albertini. Padrão Canopus por inteiro.</p>
+<!-- LOCALIZAÇÃO (trocada de posição com Galeria) -->
+<section class="section" id="localizacao">
+  <div class="wrap loc__grid">
+    <div class="loc__copy rv">
+      <h2 class="display" style="font-size:clamp(2rem,4.4vw,3rem);margin:1rem 0 1.4rem">O endereço que <span class="italic">todo mundo quer estar.</span></h2>
+      <p style="color:var(--ink-soft);line-height:1.65">A Chácara Santo Antônio é uma das regiões mais maduras de São Paulo. Bairro consolidado, infraestrutura completa, acesso rápido a dois nomes de metrô e a grandes centros comerciais. Lançamento aqui não é só um endereço bom: é um endereço que dificilmente perde valor.</p>
+      <div class="destaque">
+        <strong>Em frente ao Consulado Americano,</strong> em um endereço que é referência de prestígio na Zona Sul. Pra quem mora, status e segurança. Pra quem investe, um ativo que não perde valor.
+      </div>
+      <div style="margin-top:1.8rem">
+        <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20o%20mapa%20completo%20da%20regi%C3%A3o%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Receber o mapa completo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
     </div>
-    <div class="galeria__grid rv">
-      <div class="galeria__item wide"><img src="assets/praca.jpg" alt="Praça externa"><span class="galeria__cap">Praça da Árvore</span></div>
-      <div class="galeria__item"><img src="assets/lobby.jpg" alt="Lobby de entrada"><span class="galeria__cap">Lobby</span></div>
-      <div class="galeria__item"><img src="assets/churrasqueira.jpg" alt="Lounge churrasqueira"><span class="galeria__cap">Churrasqueira</span></div>
-      <div class="galeria__item"><img src="assets/bicicletario.jpg" alt="Bicicletário"><span class="galeria__cap">Bicicletário</span></div>
-      <div class="galeria__item"><img src="assets/delivery.jpg" alt="Espaço delivery"><span class="galeria__cap">Delivery</span></div>
-    </div>
-    <div class="section__cta rv">
-      <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20conhecer%20o%20decorado%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Agendar visita ao decorado
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
+    <div class="loc__pontos rv" data-d="1">
+      <div class="ponto"><span class="n">6<sub>MIN</sub></span><span class="l">A pé</span><span class="d">Metrô Santo Amaro</span></div>
+      <div class="ponto"><span class="n">4<sub>MIN</sub></span><span class="l">De carro</span><span class="d">Morumbi Shopping</span></div>
+      <div class="ponto"><span class="n">5<sub>MIN</sub></span><span class="l">De carro</span><span class="d">Parque Severo Gomes</span></div>
+      <div class="ponto"><span class="n">5<sub>MIN</sub></span><span class="l">A pé</span><span class="d">Estação Granja Julieta</span></div>
+      <div class="ponto"><span class="n">8<sub>MIN</sub></span><span class="l">De carro</span><span class="d">Av. Santo Amaro</span></div>
+      <div class="ponto em-frente"><span class="n">Em frente</span><span class="l">·</span><span class="d">Consulado Americano</span></div>
     </div>
   </div>
 </section>
@@ -1381,6 +1378,9 @@ const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
 }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+// Infra — duplica cada linha do carrossel pro loop infinito
+['infraA','infraB'].forEach(id => { const t = document.getElementById(id); if (t) t.innerHTML += t.innerHTML; });
 
 // Form submit (front-end only — integrar backend depois)
 (function(){
