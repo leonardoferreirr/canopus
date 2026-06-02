@@ -165,15 +165,14 @@ html[data-theme="navy"] .btn { box-shadow: 0 14px 30px -12px rgba(214,178,113,.5
   left: 0; top: 0; right: 0; bottom: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: center center;
-  filter: brightness(.84) contrast(1.06) saturate(.97) hue-rotate(-3deg);
+  object-position: left center;
+  opacity: .16;
+  filter: none;
 }
 .hero__bg::after {
   content: "";
   position: absolute; inset: 0;
-  background:
-    linear-gradient(90deg, rgba(8,17,30,.64) 0%, rgba(8,17,30,.34) 38%, rgba(8,17,30,.15) 60%, rgba(8,17,30,.05) 100%),
-    linear-gradient(180deg, rgba(8,17,30,.26) 0%, transparent 28%, transparent 72%, rgba(8,17,30,.42) 100%);
+  background: linear-gradient(180deg, transparent 66%, rgba(8,17,30,.55) 100%);
 }
 .hero__grid {
   position: relative; z-index: 2;
@@ -235,6 +234,12 @@ html[data-theme="navy"] .btn { box-shadow: 0 14px 30px -12px rgba(214,178,113,.5
   font-size: .95rem; color: var(--ink-soft);
   line-height: 1.55; max-width: 30rem;
 }
+
+/* Faixa divisória mínima (hero → fotos) */
+.strip { background: var(--bg-section); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.strip__inner { display: flex; align-items: center; justify-content: center; gap: 1.2rem; padding: 1.15rem 0; }
+.strip__dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; opacity: .85; }
+.strip__txt { font-family: var(--ff-display); font-weight: 300; font-size: clamp(.95rem, 1.7vw, 1.3rem); letter-spacing: .005em; color: var(--ink); text-align: center; }
 
 /* FOTOS-FIRST — galeria mosaic edge-to-edge logo após o hero */
 .fotos-first{
@@ -1001,13 +1006,11 @@ html[data-theme="navy"] .hero::after {
      pra deixar features e nota legíveis. Título mantém-se forte mesmo sobre a foto. */
   .hero__img {
     left: 0; width: 100%;
-    object-position: center 30%;
-    mask-image: linear-gradient(180deg, #000 0%, #000 35%, rgba(0,0,0,.55) 65%, transparent 92%);
-    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 35%, rgba(0,0,0,.55) 65%, transparent 92%);
+    object-position: center center;
+    opacity: .2;
   }
   .hero__bg::after {
-    background:
-      linear-gradient(180deg, rgba(8,17,30,.25) 0%, rgba(8,17,30,.55) 45%, rgba(8,17,30,.92) 75%, var(--bg) 100%);
+    background: linear-gradient(180deg, transparent 70%, var(--bg) 100%);
   }
   .hero__brand { height: 72px; margin-bottom: 1.4rem; }
   .hero__form { padding: 1.6rem 1.4rem; }
@@ -1058,12 +1061,15 @@ html[data-theme="navy"] .hero::after {
 <!-- HERO -->
 <section class="hero" id="topo">
   <div class="hero__bg">
-    <img src="assets/fachada-noite.jpg" alt="Today Chácara Santo Antônio — fachada" class="hero__img" />
+    <picture>
+      <source media="(max-width: 700px)" srcset="assets/fundo-hero-mobile.jpg">
+      <img src="assets/fundo-hero-desktop.jpg" alt="Today Chácara Santo Antônio" class="hero__img" />
+    </picture>
   </div>
   <div class="wrap hero__grid">
     <div class="hero__head">
       <img src="assets/logo-today-dark.png" alt="Today Chácara Santo Antônio" class="hero__brand" />
-      <h1>Endereço estratégico<br/>para <span class="strong">morar ou investir</span>.</h1>
+      <h1>More onde<br/><span class="strong">São Paulo acontece</span>.</h1>
     </div>
 
     <div class="hero__form" id="hero-form">
@@ -1120,6 +1126,15 @@ html[data-theme="navy"] .hero::after {
   </div>
 </section>
 
+<!-- FAIXA DIVISÓRIA mínima (hero → fotos) -->
+<div class="strip">
+  <div class="wrap strip__inner">
+    <span class="strip__dot"></span>
+    <span class="strip__txt">Endereço estratégico para <span class="italic">morar ou investir</span>.</span>
+    <span class="strip__dot"></span>
+  </div>
+</div>
+
 <!-- FOTOS-FIRST — galeria que entra logo após o hero, sem textos antes -->
 <section class="fotos-first" id="fotos">
   <div class="fotos-first__grid">
@@ -1175,7 +1190,7 @@ html[data-theme="navy"] .hero::after {
         <h3 class="display">Mobilidade, conforto e lazer, tudo na porta de casa.</h3>
         <p>Manhã com café no Mercadinho do Lar, almoço no Morumbi Shopping, treino antes do trabalho na academia do prédio e a Linha 5 do Metrô a uma caminhada de cinco minutos. Você ganha o que dinheiro não compra de volta: tempo de qualidade.</p>
         <div style="margin-top:1.8rem">
-          <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio%20para%20morar." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais pra morar
+          <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio%20para%20morar." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
@@ -1185,7 +1200,7 @@ html[data-theme="navy"] .hero::after {
         <h3 class="display">Localização que valoriza. Demanda que não para.</h3>
         <p>Bairro consolidado, metrô a pé e uma das regiões com maior demanda por aluguel de Zona Sul. Comprar no lançamento significa entrar pelo melhor preço, com a opção da Canopus de pagamento facilitado e a perspectiva de valorização real até a entrega da obra.</p>
         <div style="margin-top:1.8rem">
-          <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20a%20rentabilidade%20projetada%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Quero a projeção de rentabilidade
+          <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20a%20rentabilidade%20projetada%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
@@ -1211,7 +1226,7 @@ html[data-theme="navy"] .hero::after {
   </div>
   <div class="wrap">
     <div class="section__cta rv" style="margin-top:2rem">
-      <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20conhecer%20o%20decorado%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Agendar visita ao decorado
+      <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20conhecer%20o%20decorado%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
@@ -1258,7 +1273,7 @@ html[data-theme="navy"] .hero::after {
       </article>
     </div>
     <div class="section__cta rv">
-      <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20ver%20todas%20as%20plantas%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Ver todas as plantas pelo WhatsApp
+      <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20ver%20todas%20as%20plantas%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
@@ -1307,7 +1322,7 @@ html[data-theme="navy"] .hero::after {
         <strong>Em frente ao Consulado Americano,</strong> em um endereço que é referência de prestígio na Zona Sul. Pra quem mora, status e segurança. Pra quem investe, um ativo que não perde valor.
       </div>
       <div style="margin-top:1.8rem">
-        <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20o%20mapa%20completo%20da%20regi%C3%A3o%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Receber o mapa completo
+        <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20o%20mapa%20completo%20da%20regi%C3%A3o%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
@@ -1329,7 +1344,7 @@ html[data-theme="navy"] .hero::after {
     <h2 class="display">O melhor momento para agir é <span class="italic">agora.</span></h2>
     <p>As unidades de lançamento têm condições exclusivas e elas são limitadas. Reserve a sua antes de a tabela subir.</p>
     <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap">
-      <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20garantir%20minha%20unidade%20no%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Garantir minha unidade
+      <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20garantir%20minha%20unidade%20no%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <a href="#hero-form" class="btn btn--ghost">Voltar pro formulário</a>
