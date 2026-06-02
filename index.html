@@ -9,7 +9,9 @@
 <meta name="description" content="Lançamento Canopus na Chácara Santo Antônio. Apartamentos de 1 e 2 dorms, 29 a 40m², a 450m do Metrô Linha Lilás e em frente ao Consulado Americano. Para morar bem e crescer com o investimento.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/fundo-hero-desktop.jpg" media="(min-width: 701px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/fundo-hero-mobile.jpg" media="(max-width: 700px)" fetchpriority="high">
 <style>
 /* ============================================================
    CANOPUS · TODAY CHÁCARA SANTO ANTÔNIO
@@ -1041,11 +1043,11 @@ html[data-theme="navy"] .hero::after {
 <header class="nav" id="nav">
   <div class="wrap nav__inner">
     <a href="#topo" class="nav__brand" aria-label="Canopus · Today Chácara Santo Antônio">
-      <img src="assets/logo-canopus-original.svg" alt="Canopus" class="brand-light brand-canopus">
-      <img src="assets/logo-canopus-dark.svg" alt="Canopus" class="brand-dark brand-canopus">
+      <img loading="eager" fetchpriority="high" decoding="async" src="assets/logo-canopus-original.svg" alt="Canopus" class="brand-light brand-canopus">
+      <img loading="eager" fetchpriority="high" decoding="async" src="assets/logo-canopus-dark.svg" alt="Canopus" class="brand-dark brand-canopus">
       <span class="brand-sep" aria-hidden="true"></span>
-      <img src="assets/logo-today-light-icon.png" alt="Today" class="brand-light brand-today">
-      <img src="assets/logo-today-dark.png" alt="Today" class="brand-dark brand-today">
+      <img loading="eager" fetchpriority="high" decoding="async" src="assets/logo-today-light-icon.png" alt="Today" class="brand-light brand-today">
+      <img loading="eager" fetchpriority="high" decoding="async" src="assets/logo-today-dark.png" alt="Today" class="brand-dark brand-today">
     </a>
     <nav class="nav__links">
       <a href="#perfis">Pra quem é</a>
@@ -1065,12 +1067,12 @@ html[data-theme="navy"] .hero::after {
   <div class="hero__bg">
     <picture>
       <source media="(max-width: 700px)" srcset="assets/fundo-hero-mobile.jpg">
-      <img src="assets/fundo-hero-desktop.jpg" alt="Today Chácara Santo Antônio" class="hero__img" />
+      <img loading="eager" fetchpriority="high" decoding="async" src="assets/fundo-hero-desktop.jpg" alt="Today Chácara Santo Antônio" class="hero__img" />
     </picture>
   </div>
   <div class="wrap hero__grid">
     <div class="hero__head">
-      <img src="assets/logo-today-dark.png" alt="Today Chácara Santo Antônio" class="hero__brand" />
+      <img loading="eager" fetchpriority="high" decoding="async" src="assets/logo-today-dark.png" alt="Today Chácara Santo Antônio" class="hero__brand" />
       <h1>More onde<br/><span class="strong">São Paulo acontece</span>.</h1>
     </div>
 
@@ -1141,39 +1143,39 @@ html[data-theme="navy"] .hero::after {
 <section class="fotos-first" id="fotos">
   <div class="fotos-first__grid">
     <a class="fotos-first__item fotos-first__item--wide" href="#fotos">
-      <img src="assets/foto-portico.jpg" alt="Pórtico do Today Chácara Santo Antônio" loading="lazy" />
+      <img decoding="async" src="assets/foto-portico.jpg" alt="Pórtico do Today Chácara Santo Antônio" loading="lazy" />
       <span class="fotos-first__cap">Pórtico do Today</span>
     </a>
     <a class="fotos-first__item" href="#fotos">
-      <img src="assets/foto-sala-2dorms.jpg" alt="Sala do apartamento 2 dorms — 39m²" loading="lazy" />
+      <img decoding="async" src="assets/foto-sala-2dorms.jpg" alt="Sala do apartamento 2 dorms — 39m²" loading="lazy" />
       <span class="fotos-first__cap">Apartamento 2 dorms · 39m²</span>
     </a>
     <a class="fotos-first__item" href="#fotos">
-      <img src="assets/foto-cozinha-2dorms.jpg" alt="Cozinha integrada do 2 dorms ampliado" loading="lazy" />
+      <img decoding="async" src="assets/foto-cozinha-2dorms.jpg" alt="Cozinha integrada do 2 dorms ampliado" loading="lazy" />
       <span class="fotos-first__cap">Cozinha integrada</span>
     </a>
     <a class="fotos-first__item" href="#fotos">
-      <img src="assets/foto-sala-1dorm.jpg" alt="Sala do apartamento 1 dorm — 30m²" loading="lazy" />
+      <img decoding="async" src="assets/foto-sala-1dorm.jpg" alt="Sala do apartamento 1 dorm — 30m²" loading="lazy" />
       <span class="fotos-first__cap">Apartamento 1 dorm · 30m²</span>
     </a>
     <a class="fotos-first__item" href="#fotos">
-      <img src="assets/foto-bar-piscina.jpg" alt="Bar da piscina" loading="lazy" />
+      <img decoding="async" src="assets/foto-bar-piscina.jpg" alt="Bar da piscina" loading="lazy" />
       <span class="fotos-first__cap">Bar da piscina</span>
     </a>
     <a class="fotos-first__item" href="#fotos">
-      <img src="assets/foto-salao-festas.jpg" alt="Salão de festas" loading="lazy" />
+      <img decoding="async" src="assets/foto-salao-festas.jpg" alt="Salão de festas" loading="lazy" />
       <span class="fotos-first__cap">Salão de festas</span>
     </a>
     <a class="fotos-first__item" href="#fotos">
-      <img src="assets/churrasqueira.jpg" alt="Churrasqueira" loading="lazy" />
+      <img decoding="async" src="assets/churrasqueira.jpg" alt="Churrasqueira" loading="lazy" />
       <span class="fotos-first__cap">Churrasqueira</span>
     </a>
     <a class="fotos-first__item" href="#fotos">
-      <img src="assets/praca.jpg" alt="Praça da Árvore" loading="lazy" />
+      <img decoding="async" src="assets/praca.jpg" alt="Praça da Árvore" loading="lazy" />
       <span class="fotos-first__cap">Praça da Árvore</span>
     </a>
     <a class="fotos-first__item" href="#fotos">
-      <img src="assets/lobby.jpg" alt="Lobby" loading="lazy" />
+      <img decoding="async" src="assets/lobby.jpg" alt="Lobby" loading="lazy" />
       <span class="fotos-first__cap">Lobby</span>
     </a>
   </div>
@@ -1192,7 +1194,7 @@ html[data-theme="navy"] .hero::after {
         <h3 class="display">Mobilidade, conforto e lazer, tudo na porta de casa.</h3>
         <p>Manhã com café no Mercadinho do Lar, almoço no Morumbi Shopping, treino antes do trabalho na academia do prédio e a Linha 5 do Metrô a uma caminhada de cinco minutos. Você ganha o que dinheiro não compra de volta: tempo de qualidade.</p>
         <div style="margin-top:1.8rem">
-          <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio%20para%20morar." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
+          <a href="https://wa.me/5511981010188?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio%20para%20morar." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
@@ -1202,7 +1204,7 @@ html[data-theme="navy"] .hero::after {
         <h3 class="display">Localização que valoriza. Demanda que não para.</h3>
         <p>Bairro consolidado, metrô a pé e uma das regiões com maior demanda por aluguel de Zona Sul. Comprar no lançamento significa entrar pelo melhor preço, com a opção da Canopus de pagamento facilitado e a perspectiva de valorização real até a entrega da obra.</p>
         <div style="margin-top:1.8rem">
-          <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20a%20rentabilidade%20projetada%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
+          <a href="https://wa.me/5511981010188?text=Ol%C3%A1!%20Quero%20a%20rentabilidade%20projetada%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
@@ -1220,15 +1222,15 @@ html[data-theme="navy"] .hero::after {
     </div>
   </div>
   <div class="galeria__grid rv">
-    <div class="galeria__item wide"><img src="assets/praca.jpg" alt="Praça externa"><span class="galeria__cap">Praça da Árvore</span></div>
-    <div class="galeria__item"><img src="assets/lobby.jpg" alt="Lobby de entrada"><span class="galeria__cap">Lobby</span></div>
-    <div class="galeria__item"><img src="assets/churrasqueira.jpg" alt="Lounge churrasqueira"><span class="galeria__cap">Churrasqueira</span></div>
-    <div class="galeria__item"><img src="assets/bicicletario.jpg" alt="Bicicletário"><span class="galeria__cap">Bicicletário</span></div>
-    <div class="galeria__item"><img src="assets/delivery.jpg" alt="Espaço delivery"><span class="galeria__cap">Delivery</span></div>
+    <div class="galeria__item wide"><img loading="lazy" decoding="async" src="assets/praca.jpg" alt="Praça externa"><span class="galeria__cap">Praça da Árvore</span></div>
+    <div class="galeria__item"><img loading="lazy" decoding="async" src="assets/lobby.jpg" alt="Lobby de entrada"><span class="galeria__cap">Lobby</span></div>
+    <div class="galeria__item"><img loading="lazy" decoding="async" src="assets/churrasqueira.jpg" alt="Lounge churrasqueira"><span class="galeria__cap">Churrasqueira</span></div>
+    <div class="galeria__item"><img loading="lazy" decoding="async" src="assets/bicicletario.jpg" alt="Bicicletário"><span class="galeria__cap">Bicicletário</span></div>
+    <div class="galeria__item"><img loading="lazy" decoding="async" src="assets/delivery.jpg" alt="Espaço delivery"><span class="galeria__cap">Delivery</span></div>
   </div>
   <div class="wrap">
     <div class="section__cta rv" style="margin-top:2rem">
-      <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20conhecer%20o%20decorado%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
+      <a href="https://wa.me/5511981010188?text=Ol%C3%A1!%20Quero%20conhecer%20o%20decorado%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
@@ -1244,7 +1246,7 @@ html[data-theme="navy"] .hero::after {
     </div>
     <div class="tipos__grid">
       <article class="tipo" data-d="1">
-        <div class="planta-thumb"><img src="assets/planta-2d-tipo.jpg" alt="Planta 1 dormitório"></div>
+        <div class="planta-thumb"><img loading="lazy" decoding="async" src="assets/planta-2d-tipo.jpg" alt="Planta 1 dormitório"></div>
         <div class="body">
           <div class="num">01</div>
           <h3>1 Dormitório</h3>
@@ -1259,7 +1261,7 @@ html[data-theme="navy"] .hero::after {
         </div>
       </article>
       <article class="tipo" data-d="2">
-        <div class="planta-thumb"><img src="assets/planta-2d-ampliado.jpg" alt="Planta 2 dormitórios"></div>
+        <div class="planta-thumb"><img loading="lazy" decoding="async" src="assets/planta-2d-ampliado.jpg" alt="Planta 2 dormitórios"></div>
         <div class="body">
           <div class="num">02</div>
           <h3>2 Dormitórios</h3>
@@ -1275,7 +1277,7 @@ html[data-theme="navy"] .hero::after {
       </article>
     </div>
     <div class="section__cta rv">
-      <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20ver%20todas%20as%20plantas%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
+      <a href="https://wa.me/5511981010188?text=Ol%C3%A1!%20Quero%20ver%20todas%20as%20plantas%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
@@ -1324,7 +1326,7 @@ html[data-theme="navy"] .hero::after {
         <strong>Em frente ao Consulado Americano,</strong> em um endereço que é referência de prestígio na Zona Sul. Pra quem mora, status e segurança. Pra quem investe, um ativo que não perde valor.
       </div>
       <div style="margin-top:1.8rem">
-        <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20o%20mapa%20completo%20da%20regi%C3%A3o%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
+        <a href="https://wa.me/5511981010188?text=Ol%C3%A1!%20Quero%20o%20mapa%20completo%20da%20regi%C3%A3o%20do%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
@@ -1346,7 +1348,7 @@ html[data-theme="navy"] .hero::after {
     <h2 class="display">O melhor momento para agir é <span class="italic">agora.</span></h2>
     <p>As unidades de lançamento têm condições exclusivas e elas são limitadas. Reserve a sua antes de a tabela subir.</p>
     <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap">
-      <a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20garantir%20minha%20unidade%20no%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
+      <a href="https://wa.me/5511981010188?text=Ol%C3%A1!%20Quero%20garantir%20minha%20unidade%20no%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="btn btn--wa" target="_blank" rel="noopener">Quero saber mais
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <a href="#hero-form" class="btn btn--ghost">Voltar pro formulário</a>
@@ -1360,11 +1362,11 @@ html[data-theme="navy"] .hero::after {
     <div class="footer__inner">
       <div>
         <a href="#topo" class="footer__brand" aria-label="Canopus · Today Chácara Santo Antônio">
-          <img src="assets/logo-canopus-original.svg" alt="Canopus" class="brand-light brand-canopus">
-          <img src="assets/logo-canopus-dark.svg" alt="Canopus" class="brand-dark brand-canopus">
+          <img loading="lazy" decoding="async" src="assets/logo-canopus-original.svg" alt="Canopus" class="brand-light brand-canopus">
+          <img loading="lazy" decoding="async" src="assets/logo-canopus-dark.svg" alt="Canopus" class="brand-dark brand-canopus">
           <span class="brand-sep" aria-hidden="true"></span>
-          <img src="assets/logo-today-light.png" alt="Today Chácara Santo Antônio" class="brand-light brand-today">
-          <img src="assets/logo-today-dark.png" alt="Today" class="brand-dark brand-today">
+          <img loading="lazy" decoding="async" src="assets/logo-today-light.png" alt="Today Chácara Santo Antônio" class="brand-light brand-today">
+          <img loading="lazy" decoding="async" src="assets/logo-today-dark.png" alt="Today" class="brand-dark brand-today">
         </a>
         <div class="footer__addr" style="margin-top:1rem">Rua Henri Dunant, 332 · Chácara Santo Antônio · São Paulo · SP</div>
       </div>
@@ -1381,7 +1383,7 @@ html[data-theme="navy"] .hero::after {
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="cursor-dot" id="cursorDot"></div>
 
-<a href="https://wa.me/5511959852604?text=Ol%C3%A1!%20Quero%20saber%20sobre%20o%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="wfloat" aria-label="Fale com um especialista no WhatsApp" target="_blank" rel="noopener">
+<a href="https://wa.me/5511981010188?text=Ol%C3%A1!%20Quero%20saber%20sobre%20o%20Today%20Ch%C3%A1cara%20Santo%20Ant%C3%B4nio." class="wfloat" aria-label="Fale com um especialista no WhatsApp" target="_blank" rel="noopener">
   <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5L8.8 7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.2.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.3-.6-.4M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2"/></svg>
 </a>
 
@@ -1399,11 +1401,12 @@ document.querySelectorAll('.rv').forEach(el => io.observe(el));
 // Infra — duplica cada linha do carrossel pro loop infinito
 ['infraA','infraB'].forEach(id => { const t = document.getElementById(id); if (t) t.innerHTML += t.innerHTML; });
 
-// Form submit (front-end only — integrar backend depois)
+// Form submit — POST AJAX pra FormSubmit (envia email pra douglas.pereira@creci.org.br)
 (function(){
   const form = document.getElementById('leadForm');
   if (!form) return;
-  form.addEventListener('submit', (ev) => {
+  const endpoint = 'https://formsubmit.co/ajax/douglas.pereira@creci.org.br';
+  form.addEventListener('submit', async (ev) => {
     ev.preventDefault();
     const data = Object.fromEntries(new FormData(form));
     if (!data.nome || !data.email || !data.telefone || !data.perfil) {
@@ -1412,9 +1415,27 @@ document.querySelectorAll('.rv').forEach(el => io.observe(el));
       });
       return;
     }
-    console.log('[LEAD]', data);
-    form.style.display = 'none';
-    document.getElementById('formSuccess').classList.add('show');
+    const btn = form.querySelector('button[type="submit"]');
+    const btnText = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Enviando...';
+    const payload = new FormData(form);
+    payload.append('_subject', 'Novo lead — Today Chácara Santo Antônio');
+    payload.append('_template', 'table');
+    payload.append('_captcha', 'false');
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: payload
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      form.style.display = 'none';
+      document.getElementById('formSuccess').classList.add('show');
+    } catch (err) {
+      btn.disabled = false; btn.textContent = btnText;
+      alert('Não foi possível enviar. Tente novamente ou fale conosco pelo WhatsApp.');
+      console.error('[LEAD ERROR]', err);
+    }
   });
 })();
 
