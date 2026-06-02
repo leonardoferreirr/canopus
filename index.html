@@ -1025,7 +1025,18 @@ html[data-theme="navy"] .hero::after {
     background: linear-gradient(180deg, transparent 70%, var(--bg) 100%);
   }
   .hero__brand { height: 72px; margin-bottom: 1.4rem; }
-  .hero__form { padding: 1.6rem 1.4rem; }
+  .hero__form { padding: 1.6rem 1.4rem; position: relative; }
+  /* Cobre a foto do prédio do começo do formulário pra baixo: degradê azul (--bg) */
+  .hero__form::after {
+    content: "";
+    position: absolute;
+    left: 50%; transform: translateX(-50%);
+    width: 100vw;
+    top: -90px; bottom: -100vh;
+    background: linear-gradient(180deg, transparent 0%, var(--bg) 90px);
+    z-index: -1;
+    pointer-events: none;
+  }
 }
 @media (max-width: 680px) {
   .nav__links { display: none; }
