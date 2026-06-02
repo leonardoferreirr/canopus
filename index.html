@@ -1035,6 +1035,21 @@ html[data-theme="navy"] .hero::after {
   .wfloat { bottom: 1.2rem; right: 1.2rem; width: 56px; height: 56px; }
   .wfloat svg { width: 28px; height: 28px; }
 }
+
+/* Safety net responsivo — cobre qualquer device de 320px até desktops largos.
+   Garante que textos longos quebrem, que o wrap respire e que o h1 nao
+   estoure no iPhone SE / Galaxy 5 / Androids antigos. */
+* { min-width: 0; }
+body { overflow-wrap: break-word; word-wrap: break-word; }
+@media (max-width: 380px) {
+  .wrap { width: min(100% - 1.6rem, var(--maxw)); }
+  .hero h1 { font-size: clamp(2rem, 9vw, 2.4rem); }
+  .hero__form { padding: 1.4rem 1.1rem; }
+  .nav__brand-text { font-size: .85rem; }
+  .btn { padding: .85rem 1.2rem; font-size: .85rem; }
+  .nav__cta { padding: .55rem .85rem; font-size: .74rem; }
+  .wfloat { bottom: 1rem; right: 1rem; width: 52px; height: 52px; }
+}
 </style>
 </head>
 <body>
