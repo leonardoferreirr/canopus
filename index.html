@@ -1106,7 +1106,7 @@ body { overflow-wrap: break-word; word-wrap: break-word; }
         </div>
         <div class="field">
           <label for="f-fone">Telefone com DDD</label>
-          <input type="tel" id="f-fone" name="telefone" required autocomplete="tel" placeholder="(11) 9 ____-____">
+          <input type="tel" id="f-fone" name="telefone" required autocomplete="tel" inputmode="numeric" maxlength="15" placeholder="(11) 9 ____-____">
         </div>
         <div class="field">
           <label for="f-perfil">Para quem você quer o imóvel?</label>
@@ -1421,6 +1421,26 @@ document.querySelectorAll('.rv').forEach(el => io.observe(el));
   const form = document.getElementById('leadForm');
   if (!form) return;
   const endpoint = 'https://formsubmit.co/ajax/douglas.pereira@creci.org.br';
+
+  // Mascara de telefone: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX
+  const fone = document.getElementById('f-fone');
+  const maskFone = (raw) => {
+    const d = raw.replace(/\D/g, '').slice(0, 11);
+    if (d.length === 0) return '';
+    if (d.length <= 2) return '(' + d;
+    if (d.length <= 6) return '(' + d.slice(0,2) + ') ' + d.slice(2);
+    if (d.length <= 10) return '(' + d.slice(0,2) + ') ' + d.slice(2,6) + '-' + d.slice(6);
+    return '(' + d.slice(0,2) + ') ' + d.slice(2,7) + '-' + d.slice(7);
+  };
+  if (fone) {
+    fone.addEventListener('input', (e) => { e.target.value = maskFone(e.target.value); });
+    fone.addEventListener('blur', (e) => { e.target.value = maskFone(e.target.value); });
+  }
+  const foneValido = (v) => {
+    const d = (v||'').replace(/\D/g, '');
+    return d.length === 10 || d.length === 11;
+  };
+
   form.addEventListener('submit', async (ev) => {
     ev.preventDefault();
     const data = Object.fromEntries(new FormData(form));
@@ -1428,6 +1448,11 @@ document.querySelectorAll('.rv').forEach(el => io.observe(el));
       form.querySelectorAll('input,select').forEach(el => {
         if (!el.value) el.style.borderColor = '#c33';
       });
+      return;
+    }
+    if (!foneValido(data.telefone)) {
+      fone.style.borderColor = '#c33';
+      fone.focus();
       return;
     }
     const btn = form.querySelector('button[type="submit"]');
