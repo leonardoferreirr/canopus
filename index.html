@@ -1416,11 +1416,14 @@ document.querySelectorAll('.rv').forEach(el => io.observe(el));
 // Infra — duplica cada linha do carrossel pro loop infinito
 ['infraA','infraB'].forEach(id => { const t = document.getElementById(id); if (t) t.innerHTML += t.innerHTML; });
 
-// Form submit — POST AJAX pra FormSubmit (envia email pra douglas + adm@amtpdigital em CC)
+// Form submit — POST AJAX pra FormSubmit (dispara em paralelo pra douglas + adm@amtpdigital)
 (function(){
   const form = document.getElementById('leadForm');
   if (!form) return;
-  const endpoint = 'https://formsubmit.co/ajax/douglas.pereira@creci.org.br';
+  const recipients = [
+    'douglas.pereira@creci.org.br',
+    'adm@amtpdigital.com.br'
+  ];
 
   // Mascara de telefone: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX
   const fone = document.getElementById('f-fone');
@@ -1469,18 +1472,26 @@ document.querySelectorAll('.rv').forEach(el => io.observe(el));
     const btn = form.querySelector('button[type="submit"]');
     const btnText = btn.textContent;
     btn.disabled = true; btn.textContent = 'Enviando...';
-    const payload = new FormData(form);
-    payload.append('_subject', 'Novo lead — Today Chácara Santo Antônio');
-    payload.append('_template', 'table');
-    payload.append('_captcha', 'false');
-    payload.append('_cc', 'adm@amtpdigital.com.br');
+    const buildPayload = () => {
+      const p = new FormData(form);
+      p.append('_subject', 'Novo lead — Today Chácara Santo Antônio');
+      p.append('_template', 'table');
+      p.append('_captcha', 'false');
+      return p;
+    };
     try {
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: payload
-      });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
+      // Dispara em paralelo pros 2 destinos. Se pelo menos UM aceitar, sucesso.
+      const results = await Promise.allSettled(
+        recipients.map(addr => fetch('https://formsubmit.co/ajax/' + addr, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: buildPayload()
+        }).then(r => r.json()))
+      );
+      const ok = results.some(r => r.status === 'fulfilled' && (r.value.success === 'true' || r.value.success === true));
+      const needsActivation = results.filter(r => r.status === 'fulfilled' && /Activation/i.test(r.value.message||''));
+      console.log('[LEAD] FormSubmit results:', results, 'needsActivation:', needsActivation);
+      if (!ok && needsActivation.length === 0) throw new Error('Nenhum endpoint aceitou o lead');
       form.style.display = 'none';
       document.getElementById('formSuccess').classList.add('show');
       // Tag URL pra rastrear conversao (GA/Meta Pixel detectam URL change como evento)
