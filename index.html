@@ -1416,7 +1416,7 @@ document.querySelectorAll('.rv').forEach(el => io.observe(el));
 // Infra — duplica cada linha do carrossel pro loop infinito
 ['infraA','infraB'].forEach(id => { const t = document.getElementById(id); if (t) t.innerHTML += t.innerHTML; });
 
-// Form submit — POST AJAX pra FormSubmit (envia email pra douglas.pereira@creci.org.br)
+// Form submit — POST AJAX pra FormSubmit (envia email pra douglas + adm@amtpdigital em CC)
 (function(){
   const form = document.getElementById('leadForm');
   if (!form) return;
@@ -1440,19 +1440,30 @@ document.querySelectorAll('.rv').forEach(el => io.observe(el));
     const d = (v||'').replace(/\D/g, '');
     return d.length === 10 || d.length === 11;
   };
+  const emailValido = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((v||'').trim());
+
+  // Limpa erro ao digitar
+  form.querySelectorAll('input, select').forEach(el => {
+    el.addEventListener('input', () => { el.style.borderColor = ''; });
+    el.addEventListener('change', () => { el.style.borderColor = ''; });
+  });
 
   form.addEventListener('submit', async (ev) => {
     ev.preventDefault();
     const data = Object.fromEntries(new FormData(form));
-    if (!data.nome || !data.email || !data.telefone || !data.perfil) {
-      form.querySelectorAll('input,select').forEach(el => {
-        if (!el.value) el.style.borderColor = '#c33';
-      });
-      return;
-    }
-    if (!foneValido(data.telefone)) {
-      fone.style.borderColor = '#c33';
-      fone.focus();
+    const erros = [];
+    const marcar = (id) => {
+      const el = document.getElementById(id);
+      if (el) el.style.borderColor = '#c33';
+      erros.push(id);
+    };
+    // Validacao 100% obrigatoria
+    if (!data.nome || !data.nome.trim()) marcar('f-nome');
+    if (!data.email || !emailValido(data.email)) marcar('f-email');
+    if (!data.telefone || !foneValido(data.telefone)) marcar('f-fone');
+    if (!data.perfil) marcar('f-perfil');
+    if (erros.length) {
+      document.getElementById(erros[0])?.focus();
       return;
     }
     const btn = form.querySelector('button[type="submit"]');
@@ -1462,6 +1473,7 @@ document.querySelectorAll('.rv').forEach(el => io.observe(el));
     payload.append('_subject', 'Novo lead — Today Chácara Santo Antônio');
     payload.append('_template', 'table');
     payload.append('_captcha', 'false');
+    payload.append('_cc', 'adm@amtpdigital.com.br');
     try {
       const res = await fetch(endpoint, {
         method: 'POST',
